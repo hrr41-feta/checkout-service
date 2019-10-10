@@ -25,4 +25,8 @@ const productDetailsSchema = new mongoose.Schema({
   availableQuantity: Number,
   onOrder: Number,
 });
-console.log(productDetailsSchema);
+//console.log(productDetailsSchema);
+
+const productDetails = mongoose.model('productDetails', productDetailsSchema);
+
+module.exports.productDetails = productDetails;
