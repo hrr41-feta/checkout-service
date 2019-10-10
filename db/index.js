@@ -10,7 +10,6 @@ const productDetailsSchema = new mongoose.Schema({
   numberReviews: Number,
   itemName: String,
   badge: String,
-  sellerLocation: String,
   itemPrice: Number,
   freeShipping: Boolean,
   productOptions: [
