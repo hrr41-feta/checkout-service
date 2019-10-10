@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//const productDetails = require('./index.js').productDetails;
+const productDetails = require('./index.js').productDetails;
 const dataSources = require('./fakedataSources.js');
 
 class dataGenerator {
@@ -93,3 +93,7 @@ class dataGenerator {
     return this.getRandomInt(0, 26);
   }
 }
+
+let generator = new dataGenerator();
+let product = generator.generateProduct();
+productDetails.create(product);
