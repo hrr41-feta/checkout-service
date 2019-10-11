@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const productDetailsModel = require ('../db/index.js').productDetails;
+const productDetails = require('../db/index.js');
 
-class productDetails {
+class ProductDetailsModel {
   constructor() {
-    this.model = productDetailsModel;
+    this.model = productDetails;
   }
 
   async getProduct(productId) {
@@ -16,4 +16,4 @@ class productDetails {
 }
 
 
-module.exports = new productDetails();
+module.exports = new ProductDetailsModel();
