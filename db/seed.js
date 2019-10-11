@@ -95,5 +95,12 @@ class dataGenerator {
 }
 
 let generator = new dataGenerator();
-let product = generator.generateProduct();
-productDetails.create(product);
+products = [];
+let product;
+for (let i = 0; i < 150; i++) {
+  product = generator.generateProduct();
+  products.push(product);
+}
+productDetails.create(products)
+  .then(() => mongoose.connection.close())
+  .catch((err) => console.log(err));
