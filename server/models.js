@@ -5,4 +5,11 @@ class productDetails {
   constructor() {
     this.model = productDetailsModel;
   }
+
+  async getProduct(productId) {
+    let productData = await productDetailsModel.findOne({productId: productId})
+    return productData;
+  }
 }
+
+module.exports = productDetails;
