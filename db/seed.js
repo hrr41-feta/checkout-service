@@ -100,7 +100,7 @@ products = [];
 let product;
 for (let i = 0; i < 150; i++) {
   product = generator.generateProduct();
-  product.productId = i;
+  product.productId = i+1;
   products.push(product);
 }
 productDetails.create(products)
