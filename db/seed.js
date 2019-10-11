@@ -94,6 +94,7 @@ class dataGenerator {
   }
 }
 
+//generate products to populate db
 let generator = new dataGenerator();
 products = [];
 let product;
