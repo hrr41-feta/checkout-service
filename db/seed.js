@@ -7,7 +7,7 @@ class dataGenerator {
     //defining valid inputs to pull fake data from
     this.sellerNames = ['Michael Flinn', 'James Dunn', 'Silin Dang', 'Cyrus Ghiassi', 'Robin Kim', 'Annah Patterson'];
     this.productNames = dataSources.productNames;
-    this.badges = ['Bestseller', 'Poorseller'];
+    this.badges = ['Bestseller', 'Poorseller', null];
     this.productOptions = dataSources.productOptions;
   }
 
