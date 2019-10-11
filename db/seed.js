@@ -35,7 +35,7 @@ class dataGenerator {
   }
 
   generateProductId() {
-    return this.getRandomInt(1, 10000);
+    return this.getRandomInt(1, 100000);
   }
   generateSellerId() {
     return this.getRandomInt(1,1000);
