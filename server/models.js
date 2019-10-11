@@ -8,7 +8,9 @@ class productDetails {
 
   async getProduct(productId) {
     let productData = await this.model.findOne({productId: productId})
-    if (!productData) {throw new Error('product not found');}
+    if (!productData) {
+      throw new Error('product not found');
+    }
     return productData;
   }
 }
