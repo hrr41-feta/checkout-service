@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.get('/api/checkout/:productId/details', (req, res) => {
   console.log(req.params);
-})
+});
 
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
