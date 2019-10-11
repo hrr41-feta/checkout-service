@@ -13,7 +13,7 @@ class dataGenerator {
 
   generateProduct() {
     let product = {
-      productId: this.generateProductId(),
+      //productId: this.generateProductId(),
       sellerId: this.generateSellerId(),
       sellerName: this.generateSellerName(),
       averageReviewScore: this.generateAverageReviewScore(),
@@ -100,6 +100,7 @@ products = [];
 let product;
 for (let i = 0; i < 150; i++) {
   product = generator.generateProduct();
+  product.productId = i;
   products.push(product);
 }
 productDetails.create(products)
