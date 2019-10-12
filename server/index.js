@@ -5,7 +5,7 @@ const PORT = 1234;
 
 const app = express();
 
-app.use(morgan());
+app.use(morgan('combined'));
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
