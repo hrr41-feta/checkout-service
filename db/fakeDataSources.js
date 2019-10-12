@@ -19,6 +19,8 @@ module.exports = {
       choices: [{choice: 'serif'}, {choice: 'comic-sans'}, {choice: 'typewriter'}, {choice: 'cursive'}, {choice: 'star-wars'}]
     }
   ],
-  sellerNames: ['Al Schaapman', 'Brian Kim', 'Haley Olsen', 'Michael Scanza', 'Cyrus Ghiassi', 'James Dunn', 'Mike Flinn', 'Silin Dang', 'Jenny Shamoo', 'Jon Yang', 'Kai Dong', 'Rob Nolan', 'Julia Gens', 'Daryl Marco', 'David Fuentes', 'Djason Sylvaince', 'Jeff Lee', 'Brian Hambleton', 'Dennis Kim', 'Rachel Novoselac', 'Emily Meeks', 'Jonathan Kwak', 'Ron Cabrera']
+
+  sellerNames: ['Al Schaapman', 'Brian Kim', 'Haley Olsen', 'Michael Scanza', 'Cyrus Ghiassi', 'James Dunn', 'Mike Flinn', 'Silin Dang', 'Jenny Shamoo', 'Jon Yang', 'Kai Dong', 'Rob Nolan', 'Julia Gens', 'Daryl Marco', 'David Fuentes', 'Djason Sylvaince', 'Jeff Lee', 'Brian Hambleton', 'Dennis Kim', 'Rachel Novoselac', 'Emily Meeks', 'Jonathan Kwak', 'Ron Cabrera', 'Matt Leyrat', ' Matt McPhillips',
+'Robin Kim', 'Annah Patterson']
 
 }
