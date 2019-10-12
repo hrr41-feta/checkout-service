@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
-const productDetails = require('./index.js').productDetails;
+const productDetails = require('./index.js');
 const dataSources = require('./fakedataSources.js');
 
 class dataGenerator {
   constructor() {
     //defining valid inputs to pull fake data from
-    this.sellerNames = ['Michael Flinn', 'James Dunn', 'Silin Dang', 'Cyrus Ghiassi', 'Robin Kim', 'Annah Patterson'];
+    this.sellerNames = dataSources.sellerNames;
     this.productNames = dataSources.productNames;
-    this.badges = ['Bestseller', 'Poorseller', null];
+    this.badges = ['Bestseller', 'Badseller', null];
     this.productOptions = dataSources.productOptions;
   }
 
   generateProduct() {
     let product = {
-      productId: this.generateProductId(),
+      //productId: this.generateProductId(),
       sellerId: this.generateSellerId(),
       sellerName: this.generateSellerName(),
       averageReviewScore: this.generateAverageReviewScore(),
@@ -100,6 +100,7 @@ products = [];
 let product;
 for (let i = 0; i < 150; i++) {
   product = generator.generateProduct();
+  product.productId = i+1;
   products.push(product);
 }
 productDetails.create(products)

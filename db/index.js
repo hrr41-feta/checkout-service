@@ -28,4 +28,4 @@ const productDetailsSchema = new mongoose.Schema({
 
 const productDetails = mongoose.model('productDetails', productDetailsSchema);
 
-module.exports.productDetails = productDetails;
+module.exports = productDetails;
