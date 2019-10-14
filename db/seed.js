@@ -45,7 +45,7 @@ class dataGenerator {
     return this.sellerNames[nameIdx];
   }
   generateAverageReviewScore() {
-    return this.getRandomInt(1, 6)
+    return this.getRandomInt(1, 6);
   }
   generateNumReviews() {
     return this.getRandomInt(0, 5001);
@@ -55,18 +55,18 @@ class dataGenerator {
     return this.productNames[nameIdx];
   }
   generateBadge() {
-    let badgeIdx = this.getRandomInt(0,this.badges.length);
+    let badgeIdx = this.getRandomInt(0, this.badges.length);
     return this.badges[badgeIdx];
   }
   generateItemPrice(lowerLimit, upperLimit) {
-    let price = Math.random() * (upperLimit - lowerLimit) + lowerLimit
+    let price = Math.random() * (upperLimit - lowerLimit) + lowerLimit;
     return Number(price.toFixed(2));
   }
   generateBoolean() {
-    return Boolean(this.getRandomInt(0,2));
+    return Boolean(this.getRandomInt(0, 2));
   }
   generateProductOptions() {
-    let numOptions = this.getRandomInt(1,4);
+    let numOptions = this.getRandomInt(1, 4);
     let optionIdxs = [];
     let idx = this.getRandomInt(0, this.productOptions.length);
     optionIdxs.push(idx);
@@ -81,9 +81,9 @@ class dataGenerator {
       if (option.optionName === 'Size' || option.optionName === 'Material') {
         option.choices.forEach((choice) => {
           choice.adjustedPrice = this.generateItemPrice(10, 301);
-        })
+        });
       }
-    })
+    });
     return options;
   }
   generateAvailableQuantity() {
@@ -100,7 +100,7 @@ products = [];
 let product;
 for (let i = 0; i < 150; i++) {
   product = generator.generateProduct();
-  product.productId = i+1;
+  product.productId = i + 1;
   products.push(product);
 }
 productDetails.create(products)
