@@ -1,3 +1,5 @@
+require('babel-polyfill')
+
 module.exports = {
   entry: './client/index.jsx',
   module: {
