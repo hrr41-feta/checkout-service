@@ -106,3 +106,5 @@ for (let i = 0; i < 150; i++) {
 productDetails.create(products)
   .then(() => mongoose.connection.close())
   .catch((err) => console.log(err));
+
+module.exports = dataGenerator;
