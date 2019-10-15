@@ -2,7 +2,7 @@ import React from 'react';
 
 const SellerInfo = ({sellerName, averageScore, numReviews}) => {
   return (
-    <div>
+    <div className="sellerInfo">
       <span className="sellerName">{sellerName} </span>
       <span className="reviewScore">{averageScore} </span>
       <span className="numReviews">{numReviews}</span>

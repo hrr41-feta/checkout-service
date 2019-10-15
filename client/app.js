@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import SellerInfo from './sellerInfo.js'
-import ItemName from './itemName.js'
+import SellerInfo from './sellerInfo.js';
+import ItemName from './itemName.js';
+import ItemPrice from './itemPrice.js';
+import FreeShipping from './freeShipping.js';
 
 class App extends React.Component {
 
@@ -42,15 +44,21 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(59)
+    this.requestProductDetails(56)
       .then(data => this.updateState(data));
   }
 
   render() {
     return (
       <div>
-        <div className="sellerInfo"><SellerInfo sellerName={this.state.sellerName} averageScore={this.state.averageReviewScore} numReviews={this.state.numberReviews} /></div>
+        <SellerInfo
+          sellerName={this.state.sellerName}
+          averageScore={this.state.averageReviewScore}
+          numReviews={this.state.numberReviews}
+        />
         <ItemName itemName={this.state.itemName} />
+        <ItemPrice itemPrice={this.state.itemPrice} />
+        <FreeShipping freeShipping={this.state.freeShipping} />
       </div>
     )
   }
