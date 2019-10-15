@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import SellerInfo from './sellerInfo.js'
 
 class App extends React.Component {
 
@@ -47,6 +48,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <div className="sellerInfo"><SellerInfo sellerName={this.state.sellerName} averageScore={this.state.averageReviewScore} numReviews={this.state.numberReviews} /></div>
         {this.state.itemName}
       </div>
     )
