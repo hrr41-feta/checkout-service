@@ -1,11 +1,11 @@
 require('babel-polyfill')
 
 module.exports = {
-  entry: './client/index.jsx',
+  entry: './client/index.js',
   module: {
     rules: [
       {
-        test: [/\.jsx$/],
+        test: [/\.js$/],
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
