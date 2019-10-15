@@ -5,6 +5,7 @@ import SellerInfo from './sellerInfo.js';
 import ItemName from './itemName.js';
 import ItemPrice from './itemPrice.js';
 import FreeShipping from './freeShipping.js';
+import OnOrderAvailable from './onOrderAvailable.js';
 
 class App extends React.Component {
 
@@ -50,7 +51,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="checkoutModule">
         <SellerInfo
           sellerName={this.state.sellerName}
           averageScore={this.state.averageReviewScore}
@@ -59,11 +60,10 @@ class App extends React.Component {
         <ItemName itemName={this.state.itemName} />
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
+        <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
       </div>
     )
   }
 }
 
 export default App;
-
-
