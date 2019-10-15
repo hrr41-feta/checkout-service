@@ -6,5 +6,6 @@ import Component from '../client/index.js';
 
 test('enzyme working', () => {
   const wrapper = Enzyme.shallow(<Component />);
+  //console.log(wrapper.text());
   expect(wrapper.find('.userInputTest')).toBeDefined();
 });
