@@ -48,6 +48,6 @@ class ControlledComponent extends React.Component {
   }
 }
 
-ReactDOM.render(<ControlledComponent />, document.getElementById('app'));
+//ReactDOM.render(<ControlledComponent />, document.getElementById('app'));
 
 export default ControlledComponent;
