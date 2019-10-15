@@ -40,14 +40,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(4)
+    this.requestProductDetails(59)
       .then(data => this.updateState(data));
   }
 
   render() {
     return (
       <div>
-        {this.state.sellerName}
+        {this.state.itemName}
       </div>
     )
   }
