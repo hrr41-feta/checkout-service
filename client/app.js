@@ -6,6 +6,7 @@ import ItemName from './itemName.js';
 import ItemPrice from './itemPrice.js';
 import FreeShipping from './freeShipping.js';
 import OnOrderAvailable from './onOrderAvailable.js';
+import Badge from './badge.js';
 
 class App extends React.Component {
 
@@ -45,7 +46,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(56)
+    this.requestProductDetails(58)
       .then(data => this.updateState(data));
   }
 
@@ -58,6 +59,7 @@ class App extends React.Component {
           numReviews={this.state.numberReviews}
         />
         <ItemName itemName={this.state.itemName} />
+        <Badge badge={this.state.badge} />
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
