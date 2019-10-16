@@ -10,8 +10,8 @@ const ProductOptionList = ({productOptions, updateChoice}) => {
           choices={option.choices}
           key={idx}
           optionNumber={idx}
-          updateChoice={updateChoice}
-          />)
+          updateChoice={updateChoice} />
+        );
       })}
     </div>
   );
