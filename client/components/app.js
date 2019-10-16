@@ -10,6 +10,7 @@ import OnOrderAvailable from './onOrderAvailable.js';
 import Badge from './badge.js';
 import Personalization from './personalization.js';
 import Quantity from './quantity.js';
+import ProdcutOptionList from './productOptionList.js';
 
 class App extends React.Component {
 
@@ -59,7 +60,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(34)
+    this.requestProductDetails(14)
       .then(data => this.updateState(data));
   }
 
@@ -75,6 +76,7 @@ class App extends React.Component {
         <Badge badge={this.state.badge} />
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
+        <ProdcutOptionList productOptions={this.state.productOptions} />
         {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
         <Quantity availableQuantity={this.state.availableQuantity} updateQuantity={this.updateQuantityChoice} />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
