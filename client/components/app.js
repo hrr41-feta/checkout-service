@@ -59,7 +59,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(25)
+    this.requestProductDetails(11)
       .then(data => this.updateState(data));
   }
 
