@@ -12,7 +12,8 @@ class Quantity extends React.Component {
   }
 
   async handleDropDownSelection(event) {
-    this.setState({quantitySelection: event.target.value});
+    await this.setState({quantitySelection: event.target.value});
+    this.props.updateQuantity(this.state.quantitySelection);
   }
 
   render() {
