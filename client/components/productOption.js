@@ -5,7 +5,7 @@ class ProductOption extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      optionSelection: '',
+      optionSelection: this.props.initialDropDown,
       optionNumber: this.props.optionNumber
     };
     this.handleDropDownSelection = this.handleDropDownSelection.bind(this);
@@ -20,7 +20,8 @@ class ProductOption extends React.Component {
     return (
       <div className="productOption">
         <label>{this.props.optionName}</label><br/>
-        <select value={this.state.optionSelection} onChange={this.handleDropDownSelection} >
+        <select  value={this.state.optionSelection} onChange={this.handleDropDownSelection} >
+          <option key={20} value={''}>Select an option</option>
           {this.props.choices.map((choice, idx) => {
             return (
               <option value={choice.choice} key={idx}>
