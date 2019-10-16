@@ -21,7 +21,7 @@ class ProductOption extends React.Component {
       <div className="productOption">
         <label>{this.props.optionName}</label><br/>
         <select  value={this.state.optionSelection} onChange={this.handleDropDownSelection} >
-          <option key={20} value={''}>Select an option</option>
+          <option value={''}>Select an option</option>
           {this.props.choices.map((choice, idx) => {
             return (
               <option value={choice.choice} key={idx}>
