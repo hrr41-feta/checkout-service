@@ -6,14 +6,13 @@ class ProductOption extends React.Component {
     super(props);
     this.state = {
       optionSelection: this.props.initialDropDown,
-      optionNumber: this.props.optionNumber
     };
     this.handleDropDownSelection = this.handleDropDownSelection.bind(this);
   }
 
   async handleDropDownSelection(event) {
     await this.setState({optionSelection: event.target.value});
-    this.props.updateChoice(this.state.optionSelection, this.state.optionNumber);
+    this.props.updateChoice(this.state.optionSelection, this.props.optionNumber);
   }
 
   render() {
