@@ -25,7 +25,8 @@ class App extends React.Component {
       personalization: false,
       availableQuantity: null,
       onOrder: null,
-      productId: null
+      productId: null,
+      personalizationChoice: ''
     };
     this.requestProductDetails = this.requestProductDetails.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -45,7 +46,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(13)
+    this.requestProductDetails(16)
       .then(data => this.updateState(data));
   }
 
