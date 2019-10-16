@@ -33,20 +33,18 @@ class App extends React.Component {
   async requestProductDetails(productId) {
     try {
       var response = await axios.get(`http://127.0.0.1:1234/api/checkout/${productId}/details`);
+      return response.data;
     } catch (err) {
       console.log(err);
     }
-    return response.data;
   }
 
   updateState(newData) {
-    let newState = Object.assign({}, this.state);
-    newState = Object.assign(newState, newData);
-    this.setState(newState);
+    this.setState(newData);
   }
 
   componentDidMount() {
-    this.requestProductDetails(117)
+    this.requestProductDetails(13)
       .then(data => this.updateState(data));
   }
 
