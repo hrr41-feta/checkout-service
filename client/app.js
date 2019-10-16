@@ -8,6 +8,7 @@ import FreeShipping from './freeShipping.js';
 import OnOrderAvailable from './onOrderAvailable.js';
 import Badge from './badge.js';
 import Personalization from './personalization.js';
+import Quantity from './quantity.js';
 
 class App extends React.Component {
 
@@ -68,6 +69,7 @@ class App extends React.Component {
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
         {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
+        <Quantity />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
       </div>
     )
