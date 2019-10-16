@@ -6,17 +6,21 @@ class Quantity extends React.Component {
     super(props);
 
     this.state = {
-      quantitySelection: null,
-      availableQuantity: 67
+      quantitySelection: '',
     };
+    this.handleDropDownSelection = this.handleDropDownSelection.bind(this);
+  }
+
+  async handleDropDownSelection(event) {
+    this.setState({quantitySelection: event.target.value});
   }
 
   render() {
-    let quantities = [...Array(this.state.availableQuantity).keys()];
+    let quantities = [...Array(this.props.availableQuantity).keys()];
     return (
       <div className="quantityChoice">
         <label>Quantity</label><br />
-        <select value={this.state.quantitySelection}>
+        <select value={this.state.quantitySelection} onChange={this.handleDropDownSelection}>
           {quantities.map((quantity) => {
             return <option value={quantity + 1}>{quantity + 1}</option>
           })}

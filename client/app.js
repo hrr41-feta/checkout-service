@@ -69,7 +69,7 @@ class App extends React.Component {
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
         {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
-        <Quantity />
+        <Quantity availableQuantity={this.state.availableQuantity} />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
       </div>
     )
