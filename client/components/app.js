@@ -21,7 +21,7 @@ class App extends React.Component {
       numberReviews: null,
       itemName: '',
       badge: '',
-      itemPrice: null,
+      itemPrice: 0,
       freeShipping: false,
       productOptions: [],
       personalization: false,
@@ -59,7 +59,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(16)
+    this.requestProductDetails(25)
       .then(data => this.updateState(data));
   }
 
