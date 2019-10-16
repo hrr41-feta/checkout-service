@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app.js'
+import App from './components/app.js'
 // class ControlledComponent extends React.Component {
 //   constructor(props) {
 //     super(props);

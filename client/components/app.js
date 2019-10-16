@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+//Importing Components
 import SellerInfo from './sellerInfo.js';
 import ItemName from './itemName.js';
 import ItemPrice from './itemPrice.js';
 import FreeShipping from './freeShipping.js';
 import OnOrderAvailable from './onOrderAvailable.js';
 import Badge from './badge.js';
+import Personalization from './personalization.js';
+import Quantity from './quantity.js';
 
 class App extends React.Component {
 
@@ -18,16 +21,20 @@ class App extends React.Component {
       numberReviews: null,
       itemName: '',
       badge: '',
-      itemPrice: null,
+      itemPrice: 0,
       freeShipping: false,
       productOptions: [],
       personalization: false,
       availableQuantity: null,
       onOrder: null,
-      productId: null
+      productId: null,
+      personalizationChoice: '',
+      quantityChoice: 0
     };
     this.requestProductDetails = this.requestProductDetails.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.updatePersonalizationChoice = this.updatePersonalizationChoice.bind(this);
+    this.updateQuantityChoice = this.updateQuantityChoice.bind(this);
   }
 
   async requestProductDetails(productId) {
@@ -39,12 +46,20 @@ class App extends React.Component {
     }
   }
 
+  updateQuantityChoice(choice) {
+    this.setState({quantityChoice: Number(choice)});
+  }
+
+  updatePersonalizationChoice(choice) {
+    this.setState({personalizationChoice: choice});
+  }
+
   updateState(newData) {
     this.setState(newData);
   }
 
   componentDidMount() {
-    this.requestProductDetails(13)
+    this.requestProductDetails(34)
       .then(data => this.updateState(data));
   }
 
@@ -60,6 +75,8 @@ class App extends React.Component {
         <Badge badge={this.state.badge} />
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
+        {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
+        <Quantity availableQuantity={this.state.availableQuantity} updateQuantity={this.updateQuantityChoice} />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
       </div>
     )
