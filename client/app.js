@@ -30,6 +30,7 @@ class App extends React.Component {
     };
     this.requestProductDetails = this.requestProductDetails.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.updatePersonalizationChoice = this.updatePersonalizationChoice.bind(this);
   }
 
   async requestProductDetails(productId) {
@@ -39,6 +40,10 @@ class App extends React.Component {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  updatePersonalizationChoice(choice) {
+    this.setState({personalizationChoice: choice});
   }
 
   updateState(newData) {
@@ -62,7 +67,7 @@ class App extends React.Component {
         <Badge badge={this.state.badge} />
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
-        {this.state.personalization && <Personalization />}
+        {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
       </div>
     )

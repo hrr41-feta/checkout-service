@@ -10,14 +10,15 @@ class Personalization extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleInputChange(event) {
-    this.setState({personalizationData: event.target.value});
+  async handleInputChange(event) {
+    await this.setState({personalizationData: event.target.value});
+    this.props.updateChoice(this.state.personalizationData); //updates the top level state that will be used to submit user selections
   }
   render() {
     return (
       <div className="personalization">
         <form>
-          <label>Add your personalization text here</label>
+          <label>Add your personalization text here</label><br />
           <input value={this.state.personalizationData} onChange={this.handleInputChange} />
         </form>
       </div>
