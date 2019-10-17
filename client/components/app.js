@@ -52,7 +52,11 @@ class App extends React.Component {
   updateProductChoice(choice, choiceNumber, adjustedPrice) {
     let currentChoices = this.state.productChoices;
     currentChoices[choiceNumber] = choice;
-    this.setState({productChoices: currentChoices});
+    adjustedPrice = Number(adjustedPrice);
+    this.setState({
+      productChoices: currentChoices,
+      itemPrice: adjustedPrice ? adjustedPrice : this.state.itemPrice
+    });
   }
 
   updateQuantityChoice(choice) {
