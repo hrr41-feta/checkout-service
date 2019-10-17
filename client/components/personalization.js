@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.css';
 
 class Personalization extends React.Component {
 
@@ -18,8 +19,10 @@ class Personalization extends React.Component {
     return (
       <div className="personalization">
         <form>
-          <label>Add your personalization text here</label><br />
-          <input value={this.state.personalizationData} onChange={this.handleInputChange} />
+          <div className={styles.optionLabel}>
+            <label className={styles.optionText}>Add your personalization text here</label><br />
+          </div>
+          <textarea className={styles.personalization} value={this.state.personalizationData} onChange={this.handleInputChange} />
         </form>
       </div>
     )

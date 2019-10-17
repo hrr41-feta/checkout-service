@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.css';
 
 const SellerInfo = ({sellerName, averageScore, numReviews}) => {
   let reviewStars =  '';
@@ -6,10 +7,10 @@ const SellerInfo = ({sellerName, averageScore, numReviews}) => {
     reviewStars += '*';
   }
   return (
-    <div className="sellerInfo">
-      <span className="sellerName">{sellerName} </span>
-      <span className="reviewScore">{reviewStars} </span>
-      <span className="numReviews">{numReviews}</span>
+    <div className={styles.sellerInfo}>
+      <span className={styles.sellerName} >{sellerName}  </span>
+      <span className={styles.reviewScore}> {' '+ reviewStars + ' '} </span>
+      <span className={styles.sellerName}>({numReviews})</span>
     </div>
   );
 };

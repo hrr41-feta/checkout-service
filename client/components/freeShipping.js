@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.css';
 
 const FreeShipping = ({freeShipping}) => {
   // let shippingOffered = <div className="freeShipping">Free shipping to <span>United States</span></div>
@@ -10,9 +11,9 @@ const FreeShipping = ({freeShipping}) => {
   //   return shippingNotOffered;
   // }
   return (
-    <div className="freeShipping">
+    <div className={styles.freeShipping}>
       { freeShipping &&
-        <span>Free shipping to <span>United States</span></span>
+        <span >Free shipping to <span className={styles.freeShippingLocation}>United States</span></span>
       }
     </div>
   );

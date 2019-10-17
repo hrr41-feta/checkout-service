@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.css';
 
 class Quantity extends React.Component {
 
@@ -20,8 +21,10 @@ class Quantity extends React.Component {
     let quantities = [...Array(this.props.availableQuantity).keys()];
     return (
       <div className="quantityChoice">
-        <label>Quantity</label><br />
-        <select value={this.state.quantitySelection} onChange={this.handleDropDownSelection}>
+        <div className={styles.optionLabel} >
+          <label className={styles.optionText}>Quantity</label><br />
+        </div>
+        <select className={styles.optionSelect} value={this.state.quantitySelection} onChange={this.handleDropDownSelection}>
           <option value={0}>Select a quantity</option>
           {quantities.map((quantity) => {
             return (<option
