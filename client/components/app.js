@@ -11,6 +11,7 @@ import Badge from './badge.js';
 import Personalization from './personalization.js';
 import Quantity from './quantity.js';
 import ProductOptionList from './productOptionList.js';
+import Buttons from './buttons.js';
 
 class App extends React.Component {
 
@@ -49,10 +50,14 @@ class App extends React.Component {
     }
   }
 
-  updateProductChoice(choice, choiceNumber) {
+  updateProductChoice(choice, choiceNumber, adjustedPrice) {
     let currentChoices = this.state.productChoices;
     currentChoices[choiceNumber] = choice;
-    this.setState({productChoices: currentChoices});
+    adjustedPrice = Number(adjustedPrice);
+    this.setState({
+      productChoices: currentChoices,
+      itemPrice: adjustedPrice ? adjustedPrice : this.state.itemPrice
+    });
   }
 
   updateQuantityChoice(choice) {
@@ -87,6 +92,7 @@ class App extends React.Component {
         <ProductOptionList productOptions={this.state.productOptions} updateChoice={this.updateProductChoice} />
         {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
         <Quantity availableQuantity={this.state.availableQuantity} updateQuantity={this.updateQuantityChoice} />
+        <Buttons />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
       </div>
     )
