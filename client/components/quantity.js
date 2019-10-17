@@ -22,6 +22,7 @@ class Quantity extends React.Component {
       <div className="quantityChoice">
         <label>Quantity</label><br />
         <select value={this.state.quantitySelection} onChange={this.handleDropDownSelection}>
+          <option value={0}>Select a quantity</option>
           {quantities.map((quantity) => {
             return (<option
             value={quantity + 1}

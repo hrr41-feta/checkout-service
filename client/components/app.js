@@ -10,6 +10,7 @@ import OnOrderAvailable from './onOrderAvailable.js';
 import Badge from './badge.js';
 import Personalization from './personalization.js';
 import Quantity from './quantity.js';
+import ProductOptionList from './productOptionList.js';
 
 class App extends React.Component {
 
@@ -29,12 +30,14 @@ class App extends React.Component {
       onOrder: null,
       productId: null,
       personalizationChoice: '',
-      quantityChoice: 0
+      quantityChoice: 0,
+      productChoices: ['', '', '']
     };
     this.requestProductDetails = this.requestProductDetails.bind(this);
     this.updateState = this.updateState.bind(this);
     this.updatePersonalizationChoice = this.updatePersonalizationChoice.bind(this);
     this.updateQuantityChoice = this.updateQuantityChoice.bind(this);
+    this.updateProductChoice = this.updateProductChoice.bind(this);
   }
 
   async requestProductDetails(productId) {
@@ -44,6 +47,12 @@ class App extends React.Component {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  updateProductChoice(choice, choiceNumber) {
+    let currentChoices = this.state.productChoices;
+    currentChoices[choiceNumber] = choice;
+    this.setState({productChoices: currentChoices});
   }
 
   updateQuantityChoice(choice) {
@@ -59,7 +68,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(34)
+    this.requestProductDetails(133)
       .then(data => this.updateState(data));
   }
 
@@ -75,6 +84,7 @@ class App extends React.Component {
         <Badge badge={this.state.badge} />
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
+        <ProductOptionList productOptions={this.state.productOptions} updateChoice={this.updateProductChoice} />
         {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
         <Quantity availableQuantity={this.state.availableQuantity} updateQuantity={this.updateQuantityChoice} />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
