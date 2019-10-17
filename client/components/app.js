@@ -49,7 +49,7 @@ class App extends React.Component {
     }
   }
 
-  updateProductChoice(choice, choiceNumber) {
+  updateProductChoice(choice, choiceNumber, adjustedPrice) {
     let currentChoices = this.state.productChoices;
     currentChoices[choiceNumber] = choice;
     this.setState({productChoices: currentChoices});
