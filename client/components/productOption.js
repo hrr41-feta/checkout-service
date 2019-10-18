@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.css';
 
 class ProductOption extends React.Component {
 
@@ -20,15 +21,17 @@ class ProductOption extends React.Component {
   render() {
     return (
       <div className="productOption">
-        <label>{this.props.optionName}</label><br/>
-        <select  value={this.state.optionSelection} onChange={this.handleDropDownSelection} >
-          <option value={''}>Select an option</option>
-          {this.props.choices.map((choice, idx) => {
-            return (
-              <option value={`${choice.choice} $${choice.adjustedPrice || ''}`} key={idx}>
-                {`${choice.choice}  `}  {choice.adjustedPrice ? `($${choice.adjustedPrice})` : ''}
-              </option>
-            )
+        <div className={styles.optionLabel}>
+          <label className={styles.optionText}>{this.props.optionName}</label>
+        </div>
+        <select className={styles.optionSelect} value={this.state.optionSelection} onChange={this.handleDropDownSelection} >
+        <option value={''}>Select an option</option>
+        {this.props.choices.map((choice, idx) => {
+          return (
+            <option value={`${choice.choice} $${choice.adjustedPrice || ''}`} key={idx}>
+              {`${choice.choice}  `}  {choice.adjustedPrice ? `($${choice.adjustedPrice})` : ''}
+            </option>
+          )
           })}
         </select>
       </div>

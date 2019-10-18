@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './styles.css';
 
 const ItemName = ({itemName}) => {
   return (
-    <div className="itemName">{itemName}</div>
+    <div className={styles.itemName} >{itemName}</div>
   );
 };
 

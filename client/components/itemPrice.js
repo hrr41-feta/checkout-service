@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './styles.css';
 
 const ItemPrice = ({itemPrice}) => {
   return (
-    <div className="itemPrice">${itemPrice.toFixed(2)}</div>
+    <div className={styles.itemPrice}>${itemPrice.toFixed(2)}</div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import styles from './styles.css'
 //Importing Components
 import SellerInfo from './sellerInfo.js';
 import ItemName from './itemName.js';
@@ -79,7 +80,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="checkoutModule">
+      <div className={styles.app}>
         <SellerInfo
           sellerName={this.state.sellerName}
           averageScore={this.state.averageReviewScore}
@@ -94,6 +95,7 @@ class App extends React.Component {
         <Quantity availableQuantity={this.state.availableQuantity} updateQuantity={this.updateQuantityChoice} />
         <Buttons />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
+        <hr className={styles.borderLine} />
       </div>
     )
   }
