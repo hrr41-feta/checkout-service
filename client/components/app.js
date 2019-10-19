@@ -74,7 +74,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(69)
+    this.requestProductDetails(4)
       .then(data => this.updateState(data));
   }
 

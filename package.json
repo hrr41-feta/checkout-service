@@ -22,7 +22,8 @@
     "mongoose": "^5.7.4",
     "morgan": "^1.9.1",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "react-star-rating-component": "^1.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.3",
