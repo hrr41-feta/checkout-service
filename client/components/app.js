@@ -74,7 +74,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(77)
+    this.requestProductDetails(Math.floor(Math.random() * (150 - 1) + 1))
       .then(data => this.updateState(data));
   }
 

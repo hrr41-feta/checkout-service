@@ -31,3 +31,5 @@ dist/
 # Webpack file
 public/bundle.js
 
+package-lock.json
+
