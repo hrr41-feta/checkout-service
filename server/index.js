@@ -9,6 +9,12 @@ app.use(morgan('combined'));
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['*']);
+  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 app.get('/api/checkout/:productId/details', (req, res) => {
   let productId = req.params.productId;
