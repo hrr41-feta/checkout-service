@@ -28,3 +28,6 @@ dist/
 .eslintrc.js
 .eslintrc.json
 
+# Webpack file
+bundle.js
+
