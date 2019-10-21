@@ -29,5 +29,5 @@ dist/
 .eslintrc.json
 
 # Webpack file
-bundle.js
+public/bundle.js
 
