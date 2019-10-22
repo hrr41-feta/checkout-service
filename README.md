@@ -17,7 +17,12 @@
 
 ## Usage
 
-> Some usage instructions
+> 1. Clone this directory locally
+> 2. Run npm install from within the root directory
+> 3. Run "npm run seed-db" to seed the database (Requires mongodb)
+> 4. Run "npm run build" to transpile react code
+> 5. Run "npm start" to start the server
+> 6. Visit localhost:1234 to run the module
 
 ## Requirements
 
