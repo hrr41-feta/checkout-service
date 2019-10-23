@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import styles from './styles.css'
+import styles from './styles.css';
 //Importing Components
+
 import SellerInfo from './sellerInfo.js';
 import ItemName from './itemName.js';
 import ItemPrice from './itemPrice.js';
