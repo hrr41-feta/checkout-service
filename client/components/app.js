@@ -74,7 +74,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductDetails(Math.floor(Math.random() * (150 - 1) + 1))
+    let searchParams = new URLSearchParams(window.location.search);
+    let productId = Number(searchParams.get('productId'));
+    console.log(productId);
+    this.requestProductDetails(productId || 96)
       .then(data => this.updateState(data));
   }
 
