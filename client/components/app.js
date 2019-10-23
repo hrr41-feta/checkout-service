@@ -44,7 +44,7 @@ class App extends React.Component {
 
   async requestProductDetails(productId) {
     try {
-      var response = await axios.get(`http://127.0.0.1:1234/api/checkout/${productId}/details`);
+      var response = await axios.get(`/api/checkout/${productId}/details`);
       return response.data;
     } catch (err) {
       console.log(err);
