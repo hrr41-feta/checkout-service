@@ -7,8 +7,7 @@ const FreeShipping = ({ freeShipping }) => {
       { freeShipping &&
         (
           <span>
-            Free shipping to
-            <span className={styles.freeShippingLocation}>United States</span>
+            Free shipping to <span className={styles.freeShippingLocation}>United States</span>
           </span>
         )}
     </div>
