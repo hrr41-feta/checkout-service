@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 const mongoose = require('mongoose');
 const productDetails = require('./index.js');
-const dataSources = require('./fakedataSources.js');
+const dataSources = require('./fakeDataSources.js');
 
 class dataGenerator {
   constructor() {
