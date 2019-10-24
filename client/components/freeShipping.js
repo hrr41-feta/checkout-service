@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import styles from './styles.css';
 
@@ -7,7 +8,7 @@ const FreeShipping = ({ freeShipping }) => {
       { freeShipping &&
         (
           <span>
-            Free shipping to <span className={styles.freeShippingLocation}>United States</span>
+            Free shipping to <span className={styles.freeShippingLocation}> United States</span>
           </span>
         )}
     </div>

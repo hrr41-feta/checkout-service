@@ -1,3 +1,9 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable import/extensions */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
@@ -55,28 +61,32 @@ class App extends React.Component {
     adjustedPrice = Number(adjustedPrice);
     this.setState({
       productChoices: currentChoices,
-      itemPrice: adjustedPrice ? adjustedPrice : this.state.itemPrice,
+      // eslint-disable-next-line react/no-access-state-in-setstate
+      itemPrice: adjustedPrice || this.state.itemPrice,
     });
   }
 
   updateQuantityChoice(choice) {
-    this.setState({quantityChoice: Number(choice)});
+    this.setState({ quantityChoice: Number(choice) });
   }
 
   updatePersonalizationChoice(choice) {
-    this.setState({personalizationChoice: choice});
+    this.setState({ personalizationChoice: choice });
   }
 
   updateState(newData) {
     this.setState(newData);
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  // eslint-disable-next-line consistent-return
   async requestProductDetails(productId) {
-    var response;
+    let response;
     try {
       response = await axios.get(`/api/checkout/${productId}/details`);
       return response.data;
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   }
@@ -94,13 +104,13 @@ class App extends React.Component {
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
         <ProductOptionList productOptions={this.state.productOptions} updateChoice={this.updateProductChoice} />
-        {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
+        {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice} />}
         <Quantity availableQuantity={this.state.availableQuantity} updateQuantity={this.updateQuantityChoice} />
         <Buttons />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
         <hr className={styles.borderLine} />
       </div>
-    )
+    );
   }
 }
 
