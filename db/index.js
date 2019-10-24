@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/BTetsy' ,{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost/BTetsy', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const productDetailsSchema = new mongoose.Schema({
-  productId: {type: Number, index: {unique: true}},
+  productId: { type: Number, index: { unique: true } },
   sellerId: Number,
   sellerName: String,
   averageReviewScore: Number,
@@ -16,15 +16,14 @@ const productDetailsSchema = new mongoose.Schema({
     {
       optionName: String,
       choices: [
-        {choice: String, adjustedPrice: Number}
-      ]
-    }
+        { choice: String, adjustedPrice: Number }
+      ],
+    },
   ],
   personalization: Boolean,
   availableQuantity: Number,
   onOrder: Number,
 });
-//console.log(productDetailsSchema);
 
 const productDetails = mongoose.model('productDetails', productDetailsSchema);
 

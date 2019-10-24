@@ -1,8 +1,14 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable import/extensions */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styles from './styles.css';
-//Importing Components
+// Importing Components
 
 import SellerInfo from './sellerInfo.js';
 import ItemName from './itemName.js';
@@ -16,7 +22,6 @@ import ProductOptionList from './productOptionList.js';
 import Buttons from './buttons.js';
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +39,7 @@ class App extends React.Component {
       productId: null,
       personalizationChoice: '',
       quantityChoice: 0,
-      productChoices: ['', '', '']
+      productChoices: ['', '', ''],
     };
     this.requestProductDetails = this.requestProductDetails.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -43,43 +48,47 @@ class App extends React.Component {
     this.updateProductChoice = this.updateProductChoice.bind(this);
   }
 
-  async requestProductDetails(productId) {
-    try {
-      var response = await axios.get(`/api/checkout/${productId}/details`);
-      return response.data;
-    } catch (err) {
-      console.log(err);
-    }
+  componentDidMount() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const productId = Number(searchParams.get('productId'));
+    this.requestProductDetails(productId || 96)
+      .then((data) => this.updateState(data));
   }
 
   updateProductChoice(choice, choiceNumber, adjustedPrice) {
-    let currentChoices = this.state.productChoices;
+    const currentChoices = this.state.productChoices;
     currentChoices[choiceNumber] = choice;
     adjustedPrice = Number(adjustedPrice);
     this.setState({
       productChoices: currentChoices,
-      itemPrice: adjustedPrice ? adjustedPrice : this.state.itemPrice
+      // eslint-disable-next-line react/no-access-state-in-setstate
+      itemPrice: adjustedPrice || this.state.itemPrice,
     });
   }
 
   updateQuantityChoice(choice) {
-    this.setState({quantityChoice: Number(choice)});
+    this.setState({ quantityChoice: Number(choice) });
   }
 
   updatePersonalizationChoice(choice) {
-    this.setState({personalizationChoice: choice});
+    this.setState({ personalizationChoice: choice });
   }
 
   updateState(newData) {
     this.setState(newData);
   }
 
-  componentDidMount() {
-    let searchParams = new URLSearchParams(window.location.search);
-    let productId = Number(searchParams.get('productId'));
-    console.log(productId);
-    this.requestProductDetails(productId || 96)
-      .then(data => this.updateState(data));
+  // eslint-disable-next-line class-methods-use-this
+  // eslint-disable-next-line consistent-return
+  async requestProductDetails(productId) {
+    let response;
+    try {
+      response = await axios.get(`/api/checkout/${productId}/details`);
+      return response.data;
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
   }
 
   render() {
@@ -95,13 +104,13 @@ class App extends React.Component {
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
         <ProductOptionList productOptions={this.state.productOptions} updateChoice={this.updateProductChoice} />
-        {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice}/>}
+        {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice} />}
         <Quantity availableQuantity={this.state.availableQuantity} updateQuantity={this.updateQuantityChoice} />
         <Buttons />
         <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
         <hr className={styles.borderLine} />
       </div>
-    )
+    );
   }
 }
 
