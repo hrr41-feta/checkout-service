@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
 
-const Buttons = (props) => {
+const Buttons = () => {
   return (
   <div className={styles.buttonContainer}>
     <button className={styles.buyItNow}>Buy it now</button>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styles from './styles.css';
-//Importing Components
+// Importing Components
 
 import SellerInfo from './sellerInfo.js';
 import ItemName from './itemName.js';
@@ -16,7 +16,6 @@ import ProductOptionList from './productOptionList.js';
 import Buttons from './buttons.js';
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +33,7 @@ class App extends React.Component {
       productId: null,
       personalizationChoice: '',
       quantityChoice: 0,
-      productChoices: ['', '', '']
+      productChoices: ['', '', ''],
     };
     this.requestProductDetails = this.requestProductDetails.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -43,22 +42,20 @@ class App extends React.Component {
     this.updateProductChoice = this.updateProductChoice.bind(this);
   }
 
-  async requestProductDetails(productId) {
-    try {
-      var response = await axios.get(`/api/checkout/${productId}/details`);
-      return response.data;
-    } catch (err) {
-      console.log(err);
-    }
+  componentDidMount() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const productId = Number(searchParams.get('productId'));
+    this.requestProductDetails(productId || 96)
+      .then((data) => this.updateState(data));
   }
 
   updateProductChoice(choice, choiceNumber, adjustedPrice) {
-    let currentChoices = this.state.productChoices;
+    const currentChoices = this.state.productChoices;
     currentChoices[choiceNumber] = choice;
     adjustedPrice = Number(adjustedPrice);
     this.setState({
       productChoices: currentChoices,
-      itemPrice: adjustedPrice ? adjustedPrice : this.state.itemPrice
+      itemPrice: adjustedPrice ? adjustedPrice : this.state.itemPrice,
     });
   }
 
@@ -74,12 +71,14 @@ class App extends React.Component {
     this.setState(newData);
   }
 
-  componentDidMount() {
-    let searchParams = new URLSearchParams(window.location.search);
-    let productId = Number(searchParams.get('productId'));
-    console.log(productId);
-    this.requestProductDetails(productId || 96)
-      .then(data => this.updateState(data));
+  async requestProductDetails(productId) {
+    var response;
+    try {
+      response = await axios.get(`/api/checkout/${productId}/details`);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
