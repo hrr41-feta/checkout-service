@@ -1,10 +1,11 @@
+/* eslint-disable class-methods-use-this */
 const mongoose = require('mongoose');
 const productDetails = require('./index.js');
 const dataSources = require('./fakedataSources.js');
 
 class dataGenerator {
   constructor() {
-    //defining valid inputs to pull fake data from
+    // defining valid inputs to pull fake data from
     this.sellerNames = dataSources.sellerNames;
     this.productNames = dataSources.productNames;
     this.badges = ['Bestseller', 'Badseller', null];
@@ -13,7 +14,7 @@ class dataGenerator {
 
   generateProduct() {
     let product = {
-      //productId: this.generateProductId(),
+      // productId: this.generateProductId(),
       sellerId: this.generateSellerId(),
       sellerName: this.generateSellerName(),
       averageReviewScore: this.generateAverageReviewScore(),
@@ -37,34 +38,43 @@ class dataGenerator {
   generateProductId() {
     return this.getRandomInt(1, 100000);
   }
+
   generateSellerId() {
     return this.getRandomInt(1,1000);
   }
+
   generateSellerName() {
     let nameIdx = this.getRandomInt(0, this.sellerNames.length);
     return this.sellerNames[nameIdx];
   }
+
   generateAverageReviewScore() {
     return this.getRandomInt(1, 6);
   }
+
   generateNumReviews() {
     return this.getRandomInt(0, 5001);
   }
+
   generateProductName() {
-    let nameIdx = this.getRandomInt(0, this.productNames.length);
+    const nameIdx = this.getRandomInt(0, this.productNames.length);
     return this.productNames[nameIdx];
   }
+
   generateBadge() {
-    let badgeIdx = this.getRandomInt(0, this.badges.length);
+    const badgeIdx = this.getRandomInt(0, this.badges.length);
     return this.badges[badgeIdx];
   }
+
   generateItemPrice(lowerLimit, upperLimit) {
     let price = Math.random() * (upperLimit - lowerLimit) + lowerLimit;
     return Number(price.toFixed(2));
   }
+
   generateBoolean() {
     return Boolean(this.getRandomInt(0, 2));
   }
+
   generateProductOptions() {
     let numOptions = this.getRandomInt(1, 4);
     let optionIdxs = [];
@@ -86,15 +96,17 @@ class dataGenerator {
     });
     return options;
   }
+
   generateAvailableQuantity() {
     return this.getRandomInt(1, 201);
   }
+
   generateOnOrderQuantity() {
     return this.getRandomInt(0, 26);
   }
 }
 
-//generate products to populate db
+// generate products to populate db
 let generator = new dataGenerator();
 let products = [];
 let product;
