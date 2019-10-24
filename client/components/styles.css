@@ -191,8 +191,13 @@
 .popularItem {
   display: flex;
   align-items: center;
+  /* overflow: hidden; */
 }
 .alertImage {
   margin-right: 9px;
+  transition: transform .5s ease;
+}
+.alertImage:hover {
+  transform: scale(1.2);
 }
 
