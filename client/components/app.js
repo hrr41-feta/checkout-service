@@ -51,7 +51,7 @@ class App extends React.Component {
   componentDidMount() {
     const searchParams = new URLSearchParams(window.location.search);
     const productId = Number(searchParams.get('productId'));
-    this.requestProductDetails(productId || 47)
+    this.requestProductDetails(productId || 3)
       .then((data) => this.updateState(data));
   }
 
