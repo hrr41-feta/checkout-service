@@ -10,7 +10,7 @@
   color: rgb(34, 34, 34);
   width: 33.33333%;
   margin-right: 25%;
-  min-width: 450px;
+  max-width: 450px;
 }
 .sellerInfo {
   align-items: center;
