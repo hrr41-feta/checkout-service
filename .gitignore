@@ -27,5 +27,5 @@ dist/
 #Lint files
 .eslintrc.js
 .eslintrc.json
-
+aws-keys.json
 
