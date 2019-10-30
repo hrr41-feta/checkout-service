@@ -4,32 +4,32 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import styles from './styles.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import axios from "axios";
+import styles from "./styles.css";
 // Importing Components
 
-import SellerInfo from './sellerInfo.js';
-import ItemName from './itemName.js';
-import ItemPrice from './itemPrice.js';
-import FreeShipping from './freeShipping.js';
-import OnOrderAvailable from './onOrderAvailable.js';
-import Badge from './badge.js';
-import Personalization from './personalization.js';
-import Quantity from './quantity.js';
-import ProductOptionList from './productOptionList.js';
-import Buttons from './buttons.js';
+import SellerInfo from "./sellerInfo.js";
+import ItemName from "./itemName.js";
+import ItemPrice from "./itemPrice.js";
+import FreeShipping from "./freeShipping.js";
+import OnOrderAvailable from "./onOrderAvailable.js";
+import Badge from "./badge.js";
+import Personalization from "./personalization.js";
+import Quantity from "./quantity.js";
+import ProductOptionList from "./productOptionList.js";
+import Buttons from "./buttons.js";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sellerName: '',
+      sellerName: "",
       averageReviewScore: null,
       numberReviews: null,
-      itemName: '',
-      badge: '',
+      itemName: "",
+      badge: "",
       itemPrice: 0,
       freeShipping: false,
       productOptions: [],
@@ -37,22 +37,25 @@ class App extends React.Component {
       availableQuantity: null,
       onOrder: null,
       productId: null,
-      personalizationChoice: '',
+      personalizationChoice: "",
       quantityChoice: 0,
-      productChoices: ['', '', ''],
+      productChoices: ["", "", ""]
     };
     this.requestProductDetails = this.requestProductDetails.bind(this);
     this.updateState = this.updateState.bind(this);
-    this.updatePersonalizationChoice = this.updatePersonalizationChoice.bind(this);
+    this.updatePersonalizationChoice = this.updatePersonalizationChoice.bind(
+      this
+    );
     this.updateQuantityChoice = this.updateQuantityChoice.bind(this);
     this.updateProductChoice = this.updateProductChoice.bind(this);
   }
 
   componentDidMount() {
     const searchParams = new URLSearchParams(window.location.search);
-    const productId = Number(searchParams.get('productId'));
-    this.requestProductDetails(productId || 3)
-      .then((data) => this.updateState(data));
+    const productId = Number(searchParams.get("productId"));
+    this.requestProductDetails(productId || 3).then(data =>
+      this.updateState(data)
+    );
   }
 
   updateProductChoice(choice, choiceNumber, adjustedPrice) {
@@ -62,7 +65,7 @@ class App extends React.Component {
     this.setState({
       productChoices: currentChoices,
       // eslint-disable-next-line react/no-access-state-in-setstate
-      itemPrice: adjustedPrice || this.state.itemPrice,
+      itemPrice: adjustedPrice || this.state.itemPrice
     });
   }
 
@@ -83,7 +86,7 @@ class App extends React.Component {
   async requestProductDetails(productId) {
     let response;
     try {
-      response = await axios.get(`/api/checkout/${productId}/details`);
+      response = await axios.get(`/api/checkout/${productId}/`);
       return response.data;
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -103,11 +106,22 @@ class App extends React.Component {
         <Badge badge={this.state.badge} />
         <ItemPrice itemPrice={this.state.itemPrice} />
         <FreeShipping freeShipping={this.state.freeShipping} />
-        <ProductOptionList productOptions={this.state.productOptions} updateChoice={this.updateProductChoice} />
-        {this.state.personalization && <Personalization updateChoice={this.updatePersonalizationChoice} />}
-        <Quantity availableQuantity={this.state.availableQuantity} updateQuantity={this.updateQuantityChoice} />
+        <ProductOptionList
+          productOptions={this.state.productOptions}
+          updateChoice={this.updateProductChoice}
+        />
+        {this.state.personalization && (
+          <Personalization updateChoice={this.updatePersonalizationChoice} />
+        )}
+        <Quantity
+          availableQuantity={this.state.availableQuantity}
+          updateQuantity={this.updateQuantityChoice}
+        />
         <Buttons />
-        <OnOrderAvailable availableQuantity={this.state.availableQuantity} onOrder={this.state.onOrder} />
+        <OnOrderAvailable
+          availableQuantity={this.state.availableQuantity}
+          onOrder={this.state.onOrder}
+        />
         <hr className={styles.borderLine} />
       </div>
     );

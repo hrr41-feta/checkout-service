@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 //res.setheader
 
-app.get("/api/checkout/:productId/details", (req, res) => {
+app.get("/api/checkout/:productId", (req, res) => {
   const { productId } = req.params;
   Model.getProduct(productId)
     .then(product => res.json(product))
@@ -30,7 +30,7 @@ app.get("/api/checkout/:productId/details", (req, res) => {
 });
 
 // added
-app.post("/api/checkout/post", (req, res) => {
+app.post("/api/checkout", (req, res) => {
   const data = new productDetails(req.body);
   Model.postProduct(data)
     .then(res.send(req.body))
@@ -40,7 +40,7 @@ app.post("/api/checkout/post", (req, res) => {
 });
 
 //added
-app.delete("/api/checkout/delete/:productId", (req, res) => {
+app.delete("/api/checkout/:productId", (req, res) => {
   const productId = req.params;
   Model.deleteProduct(productId)
     .then(product => res.json("Deleted"))
@@ -50,7 +50,7 @@ app.delete("/api/checkout/delete/:productId", (req, res) => {
 });
 
 //added
-app.put("/api/checkout/put/:productId", (req, res) => {
+app.put("/api/checkout/:productId", (req, res) => {
   const productId = req.params;
   const update = req.body;
 
@@ -60,16 +60,6 @@ app.put("/api/checkout/put/:productId", (req, res) => {
       throw err;
     });
 });
-
-// app.post('/api/checkout', (req, res) => {
-//   console.log('this is a post', req.params)
-//   let data = new productDetails(req.body);
-//   Model.postProduct(data)
-//     .then(res.send('item saved to db'))
-//     .catch((err) => {
-//       throw err;
-//     });
-// }
 
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
