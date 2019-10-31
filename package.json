@@ -22,6 +22,7 @@
     "jest-cli": "^24.9.0",
     "mongoose": "^5.7.4",
     "morgan": "^1.9.1",
+    "pg": "^7.12.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-star-rating-component": "^1.4.1"

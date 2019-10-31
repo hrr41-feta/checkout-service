@@ -2,9 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const Model = require("./models.js");
 const productDetails = require("../db/index.js");
-
 const PORT = 1234;
-
 const app = express();
 
 app.use(morgan("combined"));
@@ -29,17 +27,24 @@ app.get("/api/checkout/:productId", (req, res) => {
     });
 });
 
-// added
+//////////////////////ADDITIONS/////////////////////////
+//5 PostgreSQL Routes with sample DB Users
+const postDB = require("../db/postSeed.js");
+app.get("/users", postDB.getUsers);
+app.get("/users/:id", postDB.getUserById);
+app.post("/users", postDB.createUser);
+app.put("/users/:id", postDB.updateUser);
+app.delete("/users/:id", postDB.deleteUser);
+
+//Four Mongo HTTP requests, including Mike's GET from above
 app.post("/api/checkout", (req, res) => {
   const data = new productDetails(req.body);
-  Model.postProduct(data)
+  Model.createProduct(data)
     .then(res.send(req.body))
     .catch(err => {
       throw err;
     });
 });
-
-//added
 app.delete("/api/checkout/:productId", (req, res) => {
   const productId = req.params;
   Model.deleteProduct(productId)
@@ -48,19 +53,16 @@ app.delete("/api/checkout/:productId", (req, res) => {
       throw err;
     });
 });
-
-//added
 app.put("/api/checkout/:productId", (req, res) => {
   const productId = req.params;
   const update = req.body;
-
-  Model.putProduct(productId, update)
+  Model.updateProduct(productId, update)
     .then(product => res.json("Updated"))
     .catch(err => {
       throw err;
     });
 });
-
+//////////////////////////////////////////////////////
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
 });

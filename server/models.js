@@ -14,8 +14,8 @@ class ProductDetailsModel {
     return productData;
   }
 
-  //added
-  async postProduct(product) {
+  //////////////////////ADDITIONS/////////////////////////
+  async createProduct(product) {
     try {
       let productData = await this.model.create(product);
     } catch (e) {
@@ -24,7 +24,7 @@ class ProductDetailsModel {
   }
 
   //added
-  async putProduct(productId, update) {
+  async updateProduct(productId, update) {
     try {
       let product = await this.model.findOneAndUpdate(productId, update);
     } catch (err) {
@@ -40,6 +40,7 @@ class ProductDetailsModel {
       throw err;
     }
   }
+  /////////////////////////////////////////////////////
 }
 
 module.exports = new ProductDetailsModel();
