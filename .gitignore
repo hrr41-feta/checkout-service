@@ -24,8 +24,11 @@ coverage
 build/
 dist/
 
-#Lint files
+# Lint files
 .eslintrc.js
 .eslintrc.json
 aws-keys.json
+
+# CSVs
+productData.csv
 
