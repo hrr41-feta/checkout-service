@@ -55,3 +55,12 @@ CREATE TABLE products_font (
   product_id INTEGER NOT NULL,
   font_id INTEGER NOT NULL
 )
+
+COPY products_size (product_id,size_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_sizes.csv' DELIMITER ',' CSV HEADER;
+
+COPY products_pattern (product_id,pattern_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_pattern.csv' DELIMITER ',' CSV HEADER;
+
+COPY products_font (product_id,font_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_font.csv' DELIMITER ',' CSV HEADER;
+
+COPY products_material (product_id,material_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_material.csv' DELIMITER ',' CSV HEADER;
+
