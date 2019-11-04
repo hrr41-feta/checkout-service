@@ -29,7 +29,7 @@ app.get("/api/checkout/:productId", (req, res) => {
 
 //////////////////////ADDITIONS/////////////////////////
 //5 PostgreSQL Routes with sample DB Users
-const postDB = require("../db/postSeed.js");
+const postDB = require("../db/postQueries.js");
 app.get("/users", postDB.getUsers);
 app.get("/users/:id", postDB.getUserById);
 app.post("/users", postDB.createUser);
