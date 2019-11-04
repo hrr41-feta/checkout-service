@@ -34,7 +34,6 @@ CREATE TABLE products_material (
   material_id INTEGER NOT NULL
 )
 
-
 CREATE TABLE pattern (
   id serial PRIMARY KEY,
   patterns VARCHAR (255) NOT NULL
