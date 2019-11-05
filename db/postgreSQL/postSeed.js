@@ -1,8 +1,7 @@
-const dataSources = require("./fakeDataSources.js");
+const dataSources = require("../fakeDataSources.js");
 const faker = require("faker");
-const pool = require("./postQueries.js");
+const pool = require("./index.js");
 const fs = require("fs");
-// const fastcsv = require("fast-csv");
 
 class dataGenerator {
   constructor() {
@@ -132,7 +131,7 @@ writeTenMil(writeData, "utf-8", () => {
   writeData.end();
 });
 
-///////////////PRODUCT SIZES JOINT TABLE WRITE////////////////////
+////////PRODUCT SIZES JOINT TABLE WRITE/////////
 let sizes = ["extra_small", "small", "medium", "large", "extra_large"];
 const writeSizes = fs.createWriteStream("products_sizes.csv");
 writeSizes.write("product_id,size_id\n", "utf8");
@@ -168,7 +167,7 @@ tenMilSizes(writeSizes, "utf-8", () => {
   writeSizes.end();
 });
 
-//////////////////PRODUCT MATERIALS JOINT TABLE WRITE/////////////////////////
+/////////PRODUCT MATERIALS JOINT TABLE WRITE///////////
 let materials = [
   "ash",
   "walnut",
@@ -214,7 +213,7 @@ tenMilMaterials(writeMaterials, "utf-8", () => {
   writeMaterials.end();
 });
 
-////////////////PRODUCT PATTERNS JOINT TABLE WRITE/////////////////////////
+///////PRODUCT PATTERNS JOINT TABLE WRITE///////
 let patterns = [
   "checkerboard",
   "argile",
@@ -258,7 +257,7 @@ tenMilPatterns(writePatterns, "utf-8", () => {
   writePatterns.end();
 });
 
-////////////////////PRODUCT FONTS JOINT TABLE WRITE/////////////////////////
+//////PRODUCT FONTS JOINT TABLE WRITE/////////
 let fonts = ["serif", "comic_sans", "typewriter", "cursive", "star_wars"];
 const writeFonts = fs.createWriteStream("products_font.csv");
 writeFonts.write("product_id,font_id\n", "utf8");
