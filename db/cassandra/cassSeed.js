@@ -1,8 +1,6 @@
-const dataSources = require("./fakeDataSources.js");
+const dataSources = require("../fakeDataSources.js");
 const faker = require("faker");
-const pool = require("./postQueries.js");
 const fs = require("fs");
-// const fastcsv = require("fast-csv");
 
 class dataGenerator {
   constructor() {
@@ -11,7 +9,6 @@ class dataGenerator {
   }
   generateProduct() {
     let product = {
-      productId: this.generateProductId(),
       sellerId: this.generateSellerId(),
       sellerName: faker.name.findName(),
       averageReviewScore: this.generateAverageReviewScore(),
@@ -31,9 +28,6 @@ class dataGenerator {
   getRandomInt(lowerLimit, upperLimit) {
     // returns integer between lower limit and upper limit - 1
     return Math.floor(Math.random() * (upperLimit - lowerLimit) + lowerLimit);
-  }
-  generateProductId() {
-    return this.getRandomInt(1, 10000);
   }
   generateSellerId() {
     return this.getRandomInt(1, 10000);
@@ -83,12 +77,9 @@ class dataGenerator {
     return this.getRandomInt(0, 26);
   }
 }
-
-// generate products to populate db
 let generator = new dataGenerator();
 
-//////////////////////PRODUCTS WRITE/////////////////////////
-const writeData = fs.createWriteStream("productData.csv");
+const writeData = fs.createWriteStream("cass_products.csv");
 writeData.write(
   "product_id,seller_id,seller_name,average_review_score,number_reviews,item_name,badge,item_price,free_shipping,personalization,available_quantity,on_order\n",
   "utf8"
@@ -101,9 +92,8 @@ const writeTenMil = (writer, encoding, callback) => {
     do {
       i--;
       id++;
-      //Not adding ID currently
       const gd = generator.generateProduct();
-      const productId = gd.productId;
+      const productId = id;
       const sellerId = gd.sellerId;
       const sellerName = gd.sellerName;
       const averageReviewScore = gd.averageReviewScore;
@@ -128,14 +118,13 @@ const writeTenMil = (writer, encoding, callback) => {
   };
   write();
 };
-writeTenMil(writeData, "utf-8", () => {
-  writeData.end();
-});
+// writeTenMil(writeData, "utf-8", () => {
+//   writeData.end();
+// });
 
-///////////////PRODUCT SIZES JOINT TABLE WRITE////////////////////
 let sizes = ["extra_small", "small", "medium", "large", "extra_large"];
-const writeSizes = fs.createWriteStream("products_sizes.csv");
-writeSizes.write("product_id,size_id\n", "utf8");
+const writeSizes = fs.createWriteStream("cass_sizes.csv");
+writeSizes.write("product_id,size,\n", "utf8");
 const tenMilSizes = (writer, encoding, callback) => {
   let i = 10000000;
   let id = 0;
@@ -147,7 +136,7 @@ const tenMilSizes = (writer, encoding, callback) => {
       for (j = 0; j < sizes.length; j++) {
         let randomBool = Math.random() >= 0.5;
         if (randomBool === true) {
-          let data = `${id},${j}\n`;
+          let data = `${id},${sizes[j]}\n`;
           if (i === 0) {
             writer.write(data, encoding, callback);
           } else {
@@ -164,11 +153,10 @@ const tenMilSizes = (writer, encoding, callback) => {
   };
   write();
 };
-tenMilSizes(writeSizes, "utf-8", () => {
-  writeSizes.end();
-});
+// tenMilSizes(writeSizes, "utf-8", () => {
+//   writeSizes.end();
+// });
 
-//////////////////PRODUCT MATERIALS JOINT TABLE WRITE/////////////////////////
 let materials = [
   "ash",
   "walnut",
@@ -180,8 +168,8 @@ let materials = [
   "pure_gold",
   "solid_diamond"
 ];
-const writeMaterials = fs.createWriteStream("products_material.csv");
-writeMaterials.write("product_id,material_id\n", "utf8");
+const writeMaterials = fs.createWriteStream("cass_material.csv");
+writeMaterials.write("product_id,material\n", "utf8");
 const tenMilMaterials = (writer, encoding, callback) => {
   let i = 10000000;
   let id = 0;
@@ -193,7 +181,7 @@ const tenMilMaterials = (writer, encoding, callback) => {
       for (j = 0; j < materials.length; j++) {
         let randomBool = Math.random() >= 0.5;
         if (randomBool === true) {
-          let data = `${id},${j}\n`;
+          let data = `${id},${materials[j]}\n`;
           if (i === 0) {
             writer.write(data, encoding, callback);
           } else {
@@ -210,11 +198,10 @@ const tenMilMaterials = (writer, encoding, callback) => {
   };
   write();
 };
-tenMilMaterials(writeMaterials, "utf-8", () => {
-  writeMaterials.end();
-});
+// tenMilMaterials(writeMaterials, "utf-8", () => {
+//   writeMaterials.end();
+// });
 
-////////////////PRODUCT PATTERNS JOINT TABLE WRITE/////////////////////////
 let patterns = [
   "checkerboard",
   "argile",
@@ -224,8 +211,8 @@ let patterns = [
   "bars",
   "tie_dye"
 ];
-const writePatterns = fs.createWriteStream("products_pattern.csv");
-writePatterns.write("product_id,pattern_id\n", "utf8");
+const writePatterns = fs.createWriteStream("cass_pattern.csv");
+writePatterns.write("product_id,pattern\n", "utf8");
 const tenMilPatterns = (writer, encoding, callback) => {
   let i = 10000000;
   let id = 0;
@@ -237,7 +224,7 @@ const tenMilPatterns = (writer, encoding, callback) => {
       for (var j = 0; j < patterns.length; j++) {
         let randomBool = Math.random() >= 0.5;
         if (randomBool === true) {
-          let data = `${id},${j}\n`;
+          let data = `${id},${patterns[j]}\n`;
           if (i === 0) {
             writer.write(data, encoding, callback);
           } else {
@@ -254,14 +241,13 @@ const tenMilPatterns = (writer, encoding, callback) => {
   };
   write();
 };
-tenMilPatterns(writePatterns, "utf-8", () => {
-  writePatterns.end();
-});
+// tenMilPatterns(writePatterns, "utf-8", () => {
+//   writePatterns.end();
+// });
 
-////////////////////PRODUCT FONTS JOINT TABLE WRITE/////////////////////////
 let fonts = ["serif", "comic_sans", "typewriter", "cursive", "star_wars"];
-const writeFonts = fs.createWriteStream("products_font.csv");
-writeFonts.write("product_id,font_id\n", "utf8");
+const writeFonts = fs.createWriteStream("cass_font.csv");
+writeFonts.write("product_id,font\n", "utf8");
 const tenMilFonts = (writer, encoding, callback) => {
   let i = 10000000;
   let id = 0;
@@ -273,7 +259,7 @@ const tenMilFonts = (writer, encoding, callback) => {
       for (var j = 0; j < fonts.length; j++) {
         let randomBool = Math.random() >= 0.5;
         if (randomBool === true) {
-          let data = `${id},${j}\n`;
+          let data = `${id},${fonts[j]}\n`;
           if (i === 0) {
             writer.write(data, encoding, callback);
           } else {
@@ -293,5 +279,3 @@ const tenMilFonts = (writer, encoding, callback) => {
 tenMilFonts(writeFonts, "utf-8", () => {
   writeFonts.end();
 });
-
-module.exports = dataGenerator;

@@ -4,6 +4,8 @@ const Model = require("./models.js");
 const productDetails = require("../db/index.js");
 const PORT = 1234;
 const app = express();
+const postDB = require("../db/postgreSQL/index.js");
+const cassDB = require("../db/cassandra/index.js");
 
 app.use(morgan("combined"));
 app.use(express.static("./public"));
@@ -17,6 +19,20 @@ app.use((req, res, next) => {
 });
 //res.setheader
 
+//Cassandra Routes with sample dev keyspace, emp table
+app.get("/employees", cassDB.getEmp);
+app.post("/employees", cassDB.addEmp);
+app.delete("/employees", cassDB.deleteEmpById);
+app.put("/employees", cassDB.updateFirst);
+
+//5 PostgreSQL Routes with sample DB Users
+app.get("/users", postDB.getUsers);
+app.get("/users/:id", postDB.getUserById);
+app.post("/users", postDB.createUser);
+app.put("/users/:id", postDB.updateUser);
+app.delete("/users/:id", postDB.deleteUser);
+
+//Mongo HTTP requests, including Mike's GET from above
 app.get("/api/checkout/:productId", (req, res) => {
   const { productId } = req.params;
   Model.getProduct(productId)
@@ -26,17 +42,6 @@ app.get("/api/checkout/:productId", (req, res) => {
       res.send("Product not found");
     });
 });
-
-//////////////////////ADDITIONS/////////////////////////
-//5 PostgreSQL Routes with sample DB Users
-const postDB = require("../db/postQueries.js");
-app.get("/users", postDB.getUsers);
-app.get("/users/:id", postDB.getUserById);
-app.post("/users", postDB.createUser);
-app.put("/users/:id", postDB.updateUser);
-app.delete("/users/:id", postDB.deleteUser);
-
-//Four Mongo HTTP requests, including Mike's GET from above
 app.post("/api/checkout", (req, res) => {
   const data = new productDetails(req.body);
   Model.createProduct(data)
@@ -62,7 +67,7 @@ app.put("/api/checkout/:productId", (req, res) => {
       throw err;
     });
 });
-//////////////////////////////////////////////////////
+
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
 });
