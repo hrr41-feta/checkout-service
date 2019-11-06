@@ -4,10 +4,9 @@ CREATE TABLE products (
   seller_name text,
   average_review_score int,
   number_reviews int,
-  product_options text,
   item_name text,
   badge text,
-  item_price int,
+  item_price decimal,
   free_shipping boolean,
   personalization boolean,
   available_quantity int,
@@ -15,32 +14,31 @@ CREATE TABLE products (
   PRIMARY KEY(product_id)
 );
 
+COPY checkout.products (product_id, seller_id, seller_name, average_review_score, number_reviews, item_name, badge, item_price, free_shipping, personalization, available_quantity, on_order) FROM '/Users/robnolan/HRR41/senior/checkout-service/cass_products.csv' WITH DELIMITER=',' AND HEADER=TRUE;
+
+
+
 CREATE TABLE size (
   product_id INT,
-  size_id INT
   size TEXT,
-  PRIMARY KEY(product_id, size_id)
+  PRIMARY KEY(product_id, size)
 )
 
 CREATE TABLE font (
   product_id INT,
-  font_id INT,
   font TEXT,
-  PRIMARY KEY(product_id, font_id)
-
+  PRIMARY KEY(product_id, font)
   )
 
 CREATE TABLE material (
   product_id INT,
-  material_id INT,
   material TEXT,
-  PRIMARY KEY(product_id, material_id)
+  PRIMARY KEY(product_id, material)
 )
 CREATE TABLE pattern (
   product_id INT,
-  pattern_id INT,
   pattern TEXT,
-  PRIMARY KEY(product_id, pattern_id)
+  PRIMARY KEY(product_id, pattern)
 )
 
 UDT

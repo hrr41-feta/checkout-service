@@ -1,6 +1,5 @@
 const dataSources = require("../fakeDataSources.js");
 const faker = require("faker");
-const pool = require("./index.js");
 const fs = require("fs");
 
 class dataGenerator {
@@ -292,5 +291,3 @@ const tenMilFonts = (writer, encoding, callback) => {
 tenMilFonts(writeFonts, "utf-8", () => {
   writeFonts.end();
 });
-
-module.exports = dataGenerator;

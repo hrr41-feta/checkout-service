@@ -11,7 +11,8 @@
     "start": "node server/index.js",
     "build": "webpack --watch",
     "seed-db": "node db/seed.js",
-    "seed-csv": "node db/postSeed.js",
+    "seed-post-csv": "node db/postgreSQL/postSeed.js",
+    "seed-cass-csv": "node db/cassandra/cassSeed.js",
     "start-dev": "nodemon server/index.js --watch",
     "test": "jest"
   },
@@ -27,6 +28,7 @@
     "jest-cli": "^24.9.0",
     "mongoose": "^5.7.4",
     "morgan": "^1.9.1",
+    "newrelic": "^6.1.0",
     "pg": "^7.12.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
