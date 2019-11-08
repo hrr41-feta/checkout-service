@@ -276,6 +276,6 @@ const tenMilFonts = (writer, encoding, callback) => {
   };
   write();
 };
-tenMilFonts(writeFonts, "utf-8", () => {
-  writeFonts.end();
-});
+// tenMilFonts(writeFonts, "utf-8", () => {
+//   writeFonts.end();
+// });

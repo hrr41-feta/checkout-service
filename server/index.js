@@ -25,12 +25,11 @@ app.post("/employees", cassDB.addEmp);
 app.delete("/employees", cassDB.deleteEmpById);
 app.put("/employees", cassDB.updateFirst);
 
-//5 PostgreSQL Routes with sample DB Users
-app.get("/users", postDB.getUsers);
-app.get("/users/:id", postDB.getUserById);
-app.post("/users", postDB.createUser);
-app.put("/users/:id", postDB.updateUser);
-app.delete("/users/:id", postDB.deleteUser);
+//PostgreSQL Routes
+app.get("/products/:id", postDB.getProductById);
+app.post("/products/", postDB.addProduct);
+app.put("/products/:id", postDB.updateProductById);
+app.delete("/products/:id", postDB.deleteProductById);
 
 //Mongo HTTP requests, including Mike's GET from above
 app.get("/api/checkout/:productId", (req, res) => {

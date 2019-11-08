@@ -8,72 +8,83 @@ const pool = new Pool({
 });
 
 //PostgreSQL Sample HTTP requests
-const getUsers = (req, res) => {
-  pool.query("SELECT * FROM users ORDER BY id ASC", (err, results) => {
+const getProductById = (req, res) => {
+  const id = parseInt(req.params.id);
+  pool.query("SELECT * FROM products WHERE id = $1", [id], (err, results) => {
     if (err) {
       throw err;
     }
     res.status(200).json(results.rows);
   });
 };
-
-const getUserById = (req, res) => {
-  const id = parseInt(req.params.id);
-  pool.query("SELECT * FROM users WHERE id = $1", [id], (err, results) => {
-    if (err) {
-      throw err;
-    }
-    res.status(200).json(results.rows);
-  });
-};
-
-const createUser = (req, res) => {
-  const reqName = req.body.name;
-  const reqEmail = req.body.email;
-  console.log(req.body.name);
+const addProduct = (req, res) => {
+  const id = req.body.id;
+  const product_id = req.body.product_id;
+  const seller_id = req.body.seller_id;
+  const seller_name = req.body.seller_name;
+  const average_review_score = req.body.average_review_score;
+  const number_reviews = req.body.number_reviews;
+  const item_name = req.body.item_name;
+  const badge = req.body.badge;
+  const item_price = req.body.item_price;
+  const free_shipping = req.body.free_shipping;
+  const personalization = req.body.personalization;
+  const available_quantity = req.body.available_quantity;
+  const on_order = req.body.on_order;
   pool.query(
-    `INSERT INTO users (name, email) VALUES ($1, $2)`,
-    [reqName, reqEmail],
+    `INSERT INTO products (id, product_id, seller_id, seller_name, average_review_score, number_reviews, item_name, badge, item_price, free_shipping, personalization, available_quantity, on_order) VALUES ($1, $2,$3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+    [
+      id,
+      product_id,
+      seller_id,
+      seller_name,
+      average_review_score,
+      number_reviews,
+      item_name,
+      badge,
+      item_price,
+      free_shipping,
+      personalization,
+      available_quantity,
+      on_order
+    ],
     (err, result) => {
       if (err) {
         throw err;
       }
-      console.log(result);
-      res.status(201).send(`User added`);
+      res.status(201).send(`Product added`);
     }
   );
 };
-
-const updateUser = (req, res) => {
+const updateProductById = (req, res) => {
   const id = parseInt(req.params.id);
-  const { name, email } = req.body;
+  const { seller_name, item_name } = req.body;
   pool.query(
-    "UPDATE users SET name = $1, email = $2 WHERE id = $3",
-    [name, email, id],
+    "UPDATE products SET seller_name = $1, item_name = $2 WHERE id = $3",
+    [seller_name, item_name, id],
     (err, result) => {
       if (err) {
         throw err;
       }
-      res.status(200).send(`User modified with ID: ${id}`);
+      res.status(200).send(`Product modified with ID: ${id}`);
     }
   );
 };
 
-const deleteUser = (req, res) => {
+const deleteProductById = (req, res) => {
   const id = parseInt(req.params.id);
-  pool.query("DELETE FROM users WHERE id = $1", [id], (err, result) => {
+  pool.query("DELETE FROM products WHERE id = $1", [id], (err, result) => {
     if (err) {
       throw err;
     }
-    res.status(200).send(`User deleted with ID: ${id}`);
+    res.status(200).send(`Product deleted with ID: ${id}`);
   });
 };
 
 module.exports = {
-  getUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser,
+  getProductById,
+  addProduct,
+  updateProductById,
+  deleteProductById,
   pool
 };
