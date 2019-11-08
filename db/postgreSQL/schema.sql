@@ -19,19 +19,20 @@ CREATE TABLE size (
   sizes VARCHAR (255) NOT NULL
 )
 CREATE TABLE products_size (
-  id serial PRIMARY KEY,
-  product_id INTEGER NOT NULL,
-  size_id INTEGER NOT NULL
+  product_id INTEGER REFERENCES products (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  size_id INTEGER REFERENCES size (id) ON UPDATE CASCADE NOT NULL,
+  constraint id PRIMARY KEY (product_id, size_id)
 )
 
 CREATE TABLE material (
   id serial PRIMARY KEY,
   materials VARCHAR (255) NOT NULL
 )
+
 CREATE TABLE products_material (
-  id serial PRIMARY KEY,
-  product_id INTEGER NOT NULL,
-  material_id INTEGER NOT NULL
+  product_id INTEGER REFERENCES products (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  material_id INTEGER REFERENCES material (id) ON UPDATE CASCADE NOT NULL,
+  constraint pr_id PRIMARY KEY (product_id, material_id)
 )
 
 CREATE TABLE pattern (
@@ -40,9 +41,9 @@ CREATE TABLE pattern (
 )
 
 CREATE TABLE products_pattern (
-  id serial PRIMARY KEY,
-  product_id INTEGER NOT NULL,
-  pattern_id INTEGER NOT NULL
+  product_id INTEGER REFERENCES products (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  pattern_id INTEGER REFERENCES pattern (id) ON UPDATE CASCADE NOT NULL,
+  constraint pa_id PRIMARY KEY (product_id, pattern_id)
 )
 
 CREATE TABLE font (
@@ -50,9 +51,9 @@ CREATE TABLE font (
   fonts VARCHAR (255) NOT NULL
 )
 CREATE TABLE products_font (
-  id serial PRIMARY KEY,
-  product_id INTEGER NOT NULL,
-  font_id INTEGER NOT NULL
+  product_id INTEGER REFERENCES products (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  font_id INTEGER REFERENCES font (id) ON UPDATE CASCADE NOT NULL,
+  constraint f_id PRIMARY KEY (product_id, font_id)
 )
 
 COPY products_size (product_id,size_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_sizes.csv' DELIMITER ',' CSV HEADER;
