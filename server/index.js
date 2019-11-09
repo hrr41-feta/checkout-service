@@ -1,3 +1,4 @@
+require("newrelic");
 const express = require("express");
 const morgan = require("morgan");
 const Model = require("./models.js");
@@ -19,54 +20,54 @@ app.use((req, res, next) => {
 });
 //res.setheader
 
-//Cassandra Routes with sample dev keyspace, emp table
-app.get("/employees", cassDB.getEmp);
-app.post("/employees", cassDB.addEmp);
-app.delete("/employees", cassDB.deleteEmpById);
-app.put("/employees", cassDB.updateFirst);
-
 //PostgreSQL Routes
-app.get("/products/:id", postDB.getProductById);
-app.post("/products/", postDB.addProduct);
-app.put("/products/:id", postDB.updateProductById);
-app.delete("/products/:id", postDB.deleteProductById);
-
-//Mongo HTTP requests, including Mike's GET from above
-app.get("/api/checkout/:productId", (req, res) => {
-  const { productId } = req.params;
-  Model.getProduct(productId)
-    .then(product => res.json(product))
-    .catch(() => {
-      res.status(404);
-      res.send("Product not found");
-    });
-});
-app.post("/api/checkout", (req, res) => {
-  const data = new productDetails(req.body);
-  Model.createProduct(data)
-    .then(res.send(req.body))
-    .catch(err => {
-      throw err;
-    });
-});
-app.delete("/api/checkout/:productId", (req, res) => {
-  const productId = req.params;
-  Model.deleteProduct(productId)
-    .then(product => res.json("Deleted"))
-    .catch(err => {
-      throw err;
-    });
-});
-app.put("/api/checkout/:productId", (req, res) => {
-  const productId = req.params;
-  const update = req.body;
-  Model.updateProduct(productId, update)
-    .then(product => res.json("Updated"))
-    .catch(err => {
-      throw err;
-    });
-});
+app.get("/api/checkout/:id", postDB.getProductById);
+app.post("/api/checkout/", postDB.addProduct);
+app.put("/api/checkout/:id", postDB.updateProductById);
+app.delete("/api/checkout/:id", postDB.deleteProductById);
 
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
 });
+
+//Cassandra Routes with sample dev keyspace, emp table
+// app.get("/employees", cassDB.getEmp);
+// app.post("/employees", cassDB.addEmp);
+// app.delete("/employees", cassDB.deleteEmpById);
+// app.put("/employees", cassDB.updateFirst);
+
+// Mongo HTTP requests, including Mike's GET from above
+// app.get("/api/checkout/:productId", (req, res) => {
+//   const { productId } = req.params;
+//   Model.getProduct(productId)
+//     .then(product => res.json(product))
+//     .catch(() => {
+//       res.status(404);
+//       res.send("Product not found");
+//     });
+// });
+// app.post("/api/checkout", (req, res) => {
+//   const data = new productDetails(req.body);
+//   Model.createProduct(data)
+//     .then(res.send(req.body))
+//     .catch(err => {
+//       throw err;
+//     });
+// });
+// app.delete("/api/checkout/:productId", (req, res) => {
+//   const productId = req.params;
+//   Model.deleteProduct(productId)
+//     .then(product => res.json("Deleted"))
+//     .catch(err => {
+//       throw err;
+//     });
+// });
+// app.put("/api/checkout/:productId", (req, res) => {
+//   const productId = req.params;
+//   const update = req.body;
+//   Model.updateProduct(productId, update)
+//     .then(product => res.json("Updated"))
+//     .catch(err => {
+//       throw err;
+//     });
+// });

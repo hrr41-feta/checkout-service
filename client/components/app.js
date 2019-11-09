@@ -1,14 +1,7 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable import/extensions */
-/* eslint-disable react/no-unused-state */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import styles from "./styles.css";
-// Importing Components
 
 import SellerInfo from "./sellerInfo.js";
 import ItemName from "./itemName.js";
@@ -48,6 +41,7 @@ class App extends React.Component {
     );
     this.updateQuantityChoice = this.updateQuantityChoice.bind(this);
     this.updateProductChoice = this.updateProductChoice.bind(this);
+    this.productOptionsStateMaker = this.productOptionsStateMaker.bind(this);
   }
 
   componentDidMount() {
@@ -77,8 +71,115 @@ class App extends React.Component {
     this.setState({ personalizationChoice: choice });
   }
 
+  productOptionsStateMaker(data) {
+    let output = [];
+    let font = {
+      optionName: "Font Design",
+      choices: []
+    };
+    let pattern = {
+      optionName: "Pattern",
+      choices: []
+    };
+    let size = {
+      optionName: "Size",
+      choices: []
+    };
+    let material = {
+      optionName: "Material",
+      choices: []
+    };
+
+    for (var i = 0; i < data.length; i++) {
+      if (font.choices.length < 1) {
+        font.choices.push(data[i].fonts);
+      } else {
+        for (var j = 0; j < font.choices.length; j++) {
+          if (!font.choices.includes(data[i].fonts)) {
+            font.choices.push(data[i].fonts);
+          }
+        }
+      }
+
+      if (pattern.choices.length < 1) {
+        pattern.choices.push(data[i].patterns);
+      } else {
+        for (var y = 0; y < pattern.choices.length; y++) {
+          if (!pattern.choices.includes(data[i].patterns)) {
+            pattern.choices.push(data[i].patterns);
+          }
+        }
+      }
+
+      if (size.choices.length < 1) {
+        size.choices.push(data[i].sizes);
+      } else {
+        for (var y = 0; y < size.choices.length; y++) {
+          if (!size.choices.includes(data[i].sizes)) {
+            size.choices.push(data[i].sizes);
+          }
+        }
+      }
+
+      if (material.choices.length < 1) {
+        material.choices.push(data[i].materials);
+      } else {
+        for (var y = 0; y < material.choices.length; y++) {
+          if (!material.choices.includes(data[i].materials)) {
+            material.choices.push(data[i].materials);
+          }
+        }
+      }
+    }
+
+    font.choices.forEach((choice, i) => {
+      font.choices[i] = { choice: choice };
+    });
+    pattern.choices.forEach((choice, i) => {
+      pattern.choices[i] = { choice: choice };
+    });
+    size.choices.forEach((choice, i) => {
+      size.choices[i] = { choice: choice };
+    });
+    material.choices.forEach((choice, i) => {
+      material.choices[i] = { choice: choice };
+    });
+
+    if (font.choices.length > 0) {
+      output.push(font);
+    }
+    if (pattern.choices.length > 0) {
+      output.push(pattern);
+    }
+    if (size.choices.length > 0) {
+      output.push(size);
+    }
+    if (material.choices.length > 0) {
+      output.push(material);
+    }
+    return output;
+  }
+
   updateState(newData) {
-    this.setState(newData);
+    this.setState({
+      sellerName: newData[0].seller_name,
+      averageReviewScore: newData[0].average_review_score,
+      numberReviews: newData[0].number_reviews,
+      itemName: newData[0].item_name,
+      badge: newData[0].badge,
+      itemPrice: newData[0].item_price,
+      freeShipping: newData[0].free_shipping,
+      productOptions: this.productOptionsStateMaker(newData),
+      personalization: newData[0].personalization,
+      availableQuantity: newData[0].available_quantity,
+      onOrder: newData[0].on_order,
+      productId: newData[0].product_id
+    });
+    if (this.state.badge === "null") {
+      this.setState({
+        badge: ""
+      });
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -87,6 +188,8 @@ class App extends React.Component {
     let response;
     try {
       response = await axios.get(`/api/checkout/${productId}/`);
+      console.log("LOOKHERE!!!!", response.data[0]);
+      console.log(response.data[0].fonts);
       return response.data;
     } catch (err) {
       // eslint-disable-next-line no-console
