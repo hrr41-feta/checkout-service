@@ -1,12 +1,12 @@
-require("newrelic");
+const nr = require("newrelic");
 const express = require("express");
 const morgan = require("morgan");
-const Model = require("./models.js");
-const productDetails = require("../db/index.js");
+// const Model = require("./models.js");
+// const productDetails = require("../db/mongoDB/index.js");
 const PORT = 1234;
 const app = express();
-const postDB = require("../db/postgreSQL/index.js");
-const cassDB = require("../db/cassandra/index.js");
+const postgreSQL = require("../db/postgreSQL/index.js");
+// const cassDB = require("../db/cassandra/index.js");
 
 app.use(morgan("combined"));
 app.use(express.static("./public"));
@@ -21,10 +21,10 @@ app.use((req, res, next) => {
 //res.setheader
 
 //PostgreSQL Routes
-app.get("/api/checkout/:id", postDB.getProductById);
-app.post("/api/checkout/", postDB.addProduct);
-app.put("/api/checkout/:id", postDB.updateProductById);
-app.delete("/api/checkout/:id", postDB.deleteProductById);
+app.get("/api/checkout/:id", postgreSQL.getProductById);
+app.post("/api/checkout/", postgreSQL.addProduct);
+app.put("/api/checkout/:id", postgreSQL.updateProductById);
+app.delete("/api/checkout/:id", postgreSQL.deleteProductById);
 
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
@@ -37,7 +37,7 @@ app.listen(PORT, () => {
 // app.put("/employees", cassDB.updateFirst);
 
 // Mongo HTTP requests, including Mike's GET from above
-// app.get("/api/checkout/:productId", (req, res) => {
+// app.get("/mapi/checkout/:productId", (req, res) => {
 //   const { productId } = req.params;
 //   Model.getProduct(productId)
 //     .then(product => res.json(product))

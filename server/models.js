@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const productDetails = require("../db/index.js");
+const productDetails = require("../db/mongoDB/index.js");
 
 class ProductDetailsModel {
   constructor() {
