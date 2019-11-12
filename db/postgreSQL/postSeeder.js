@@ -211,9 +211,9 @@ const tenMilMaterials = (writer, encoding, callback) => {
 tenMilMaterials(writeMaterials, "utf-8", () => {
   writeMaterials.end();
 });
-const writeMaterials = fs.createWriteStream("products_material2.csv");
-writeMaterials.write("product_id,material_id\n", "utf8");
-const tenMilMaterials = (writer, encoding, callback) => {
+const writeMaterials2 = fs.createWriteStream("products_material2.csv");
+writeMaterials2.write("product_id,material_id\n", "utf8");
+const tenMilMaterials2 = (writer, encoding, callback) => {
   let i = 10000000;
   let id = 5000000;
   let write = () => {
@@ -241,8 +241,8 @@ const tenMilMaterials = (writer, encoding, callback) => {
   };
   write();
 };
-tenMilMaterials(writeMaterials, "utf-8", () => {
-  writeMaterials.end();
+tenMilMaterials2(writeMaterials2, "utf-8", () => {
+  writeMaterials2.end();
 });
 
 ///////PRODUCT PATTERNS JOINT TABLE WRITE///////
@@ -289,9 +289,9 @@ tenMilPatterns(writePatterns, "utf-8", () => {
   writePatterns.end();
 });
 
-const writePatterns = fs.createWriteStream("products_pattern2.csv");
-writePatterns.write("product_id,pattern_id\n", "utf8");
-const tenMilPatterns = (writer, encoding, callback) => {
+const writePatterns2 = fs.createWriteStream("products_pattern2.csv");
+writePatterns2.write("product_id,pattern_id\n", "utf8");
+const tenMilPatterns2 = (writer, encoding, callback) => {
   let i = 10000000;
   let id = 5000000;
   let write = () => {
@@ -319,8 +319,8 @@ const tenMilPatterns = (writer, encoding, callback) => {
   };
   write();
 };
-tenMilPatterns(writePatterns, "utf-8", () => {
-  writePatterns.end();
+tenMilPatterns2(writePatterns2, "utf-8", () => {
+  writePatterns2.end();
 });
 
 //////PRODUCT FONTS JOINT TABLE WRITE/////////
@@ -359,9 +359,9 @@ tenMilFonts(writeFonts, "utf-8", () => {
   writeFonts.end();
 });
 
-const writeFonts = fs.createWriteStream("products_font2.csv");
-writeFonts.write("product_id,font_id\n", "utf8");
-const tenMilFonts = (writer, encoding, callback) => {
+const writeFonts2 = fs.createWriteStream("products_font2.csv");
+writeFonts2.write("product_id,font_id\n", "utf8");
+const tenMilFonts2 = (writer, encoding, callback) => {
   let i = 10000000;
   let id = 5000000;
   let write = () => {
@@ -389,6 +389,6 @@ const tenMilFonts = (writer, encoding, callback) => {
   };
   write();
 };
-tenMilFonts(writeFonts, "utf-8", () => {
-  writeFonts.end();
+tenMilFonts2(writeFonts2, "utf-8", () => {
+  writeFonts2.end();
 });
