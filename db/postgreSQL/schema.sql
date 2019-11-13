@@ -1,5 +1,6 @@
 CREATE TABLE products (
-  product_id serial PRIMARY KEY,
+  id serial PRIMARY KEY,
+  product_id INTEGER NOT NULL,
   seller_id SMALLINT NOT NULL,
   seller_name VARCHAR (50) NOT NULL,
   average_review_score SMALLINT NOT NULL,
@@ -15,7 +16,7 @@ CREATE TABLE products (
 
 CREATE TABLE size (
   id serial PRIMARY KEY,
-  sizes VARCHAR (255) NOT NULL
+  sizes VARCHAR (20) NOT NULL
 );
 CREATE TABLE products_size (
   product_id INTEGER REFERENCES products (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -25,7 +26,7 @@ CREATE TABLE products_size (
 
 CREATE TABLE material (
   id serial PRIMARY KEY,
-  materials VARCHAR (255) NOT NULL
+  materials VARCHAR (20) NOT NULL
 );
 
 CREATE TABLE products_material (
@@ -36,7 +37,7 @@ CREATE TABLE products_material (
 
 CREATE TABLE pattern (
   id serial PRIMARY KEY,
-  patterns VARCHAR (255) NOT NULL
+  patterns VARCHAR (20) NOT NULL
 );
 
 CREATE TABLE products_pattern (
@@ -47,7 +48,7 @@ CREATE TABLE products_pattern (
 
 CREATE TABLE font (
   id serial PRIMARY KEY,
-  fonts VARCHAR (255) NOT NULL
+  fonts VARCHAR (20) NOT NULL
 );
 CREATE TABLE products_font (
   product_id INTEGER REFERENCES products (id) ON UPDATE CASCADE ON DELETE CASCADE,

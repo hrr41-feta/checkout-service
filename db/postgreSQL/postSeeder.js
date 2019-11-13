@@ -88,7 +88,7 @@ let generator = new dataGenerator();
 //////////////////////PRODUCTS WRITE/////////////////////////
 const writeData = fs.createWriteStream("productData.csv");
 writeData.write(
-  "seller_id,seller_name,average_review_score,number_reviews,item_name,badge,item_price,free_shipping,personalization,available_quantity,on_order\n",
+  "product_id,seller_id,seller_name,average_review_score,number_reviews,item_name,badge,item_price,free_shipping,personalization,available_quantity,on_order\n",
   "utf8"
 );
 const writeTenMil = (writer, encoding, callback) => {
@@ -101,6 +101,7 @@ const writeTenMil = (writer, encoding, callback) => {
       id++;
       //Not adding ID currently
       const gd = generator.generateProduct();
+      const productId = gd.productId;
       const sellerId = gd.sellerId;
       const sellerName = gd.sellerName;
       const averageReviewScore = gd.averageReviewScore;
@@ -112,7 +113,7 @@ const writeTenMil = (writer, encoding, callback) => {
       const personalization = gd.personalization;
       const availableQuantity = gd.availableQuantity;
       const onOrder = gd.onOrder;
-      const data = `${sellerId},${sellerName},${averageReviewScore},${numberReviews},${itemName},${badge},${itemPrice},${freeShipping},${personalization},${availableQuantity},${onOrder}\n`;
+      const data = `${productId},${sellerId},${sellerName},${averageReviewScore},${numberReviews},${itemName},${badge},${itemPrice},${freeShipping},${personalization},${availableQuantity},${onOrder}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
