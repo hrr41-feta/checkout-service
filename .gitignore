@@ -40,3 +40,6 @@ cass_sizes.csv
 cass_font.csv
 cass_material.csv
 cass_pattern.csv
+
+
+.env

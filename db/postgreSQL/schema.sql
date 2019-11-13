@@ -69,13 +69,12 @@ insert into pattern (patterns) values('checkerboard'),('argile'),('striped_verti
 insert into font (fonts) values('serif'),('comic_sans'),('typewriter'),('cursive'),('star_wars');
 
 
-\COPY products (product_id,seller_id,seller_name,average_review_score,number_reviews,item_name,badge,item_price,free_shipping,personalization,available_quantity,on_order) FROM '/home/ec2-user/checkout-service/productData.csv' DELIMITER ',' CSV HEADER;
+\COPY products (product_id,seller_id,seller_name,average_review_score,number_reviews,item_name,badge,item_price,free_shipping,personalization,available_quantity,on_order) FROM '/Users/robnolan/HRR41/senior/checkout-service/productData.csv' DELIMITER ',' CSV HEADER;
 
-\COPY products_size (product_id,size_id) FROM '/home/ec2-user/checkout-service/products_sizes.csv' DELIMITER ',' CSV HEADER;
+\COPY products_size (product_id,size_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_sizes.csv' DELIMITER ',' CSV HEADER;
 
-\COPY products_pattern (product_id,pattern_id) FROM '/home/ec2-user/checkout-service/products_pattern.csv' DELIMITER ',' CSV HEADER;
+\COPY products_pattern (product_id,pattern_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_pattern.csv' DELIMITER ',' CSV HEADER;
 
-COPY products_font (product_id,font_id) FROM '/home/ec2-user/checkout-service/products_font.csv' DELIMITER ',' CSV HEADER;
+\COPY products_font (product_id,font_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_font.csv' DELIMITER ',' CSV HEADER;
 
-COPY products_material (product_id,material_id) FROM '/home/ec2-user/checkout-service/products_material.csv' DELIMITER ',' CSV HEADER;
-
+\COPY products_material (product_id,material_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_material.csv' DELIMITER ',' CSV HEADER;

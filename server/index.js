@@ -1,9 +1,10 @@
+require("dotenv").config();
 const nr = require("newrelic");
 const express = require("express");
 const morgan = require("morgan");
 // const Model = require("./models.js");
 // const productDetails = require("../db/mongoDB/index.js");
-const PORT = 1234;
+const PORT = process.env.PORT;
 const app = express();
 const postgreSQL = require("../db/postgreSQL/index.js");
 // const cassDB = require("../db/cassandra/index.js");
