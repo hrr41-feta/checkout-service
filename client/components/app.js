@@ -45,11 +45,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const searchParams = new URLSearchParams(window.location.search);
-    const productId = Number(searchParams.get("productId"));
-    this.requestProductDetails(productId || 3).then(data =>
-      this.updateState(data)
-    );
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const productId = Number(searchParams.get("productId"));
+    this.requestProductDetails(3).then(data => this.updateState(data));
   }
 
   updateProductChoice(choice, choiceNumber, adjustedPrice) {
@@ -185,10 +183,15 @@ class App extends React.Component {
   // eslint-disable-next-line class-methods-use-this
   // eslint-disable-next-line consistent-return
   async requestProductDetails(productId) {
-    let response;
+    let id = window.location.search.slice(10) || params;
     try {
-      response = await axios.get(
-        `http://ec2-52-15-159-32.us-east-2.compute.amazonaws.com:1234/api/checkout/${productId}`
+      let response = await axios.get(
+        `http://ec2-52-15-159-32.us-east-2.compute.amazonaws.com:1234/api/checkout`,
+        {
+          params: {
+            id: id
+          }
+        }
       );
       return response.data;
     } catch (err) {
