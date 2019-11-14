@@ -24,7 +24,10 @@ app.use((req, res, next) => {
 //res.setheader
 
 //PostgreSQL Routes
-app.get("/api/checkout", postgreSQL.getProductById);
+app.get("/api/checkout/:id", (req, res) => {
+  res.send("sup");
+});
+// app.get("/api/checkout/:id", postgreSQL.getProductById);
 app.post("/api/checkout/", postgreSQL.addProduct);
 app.put("/api/checkout/:id", postgreSQL.updateProductById);
 app.delete("/api/checkout/:id", postgreSQL.deleteProductById);
