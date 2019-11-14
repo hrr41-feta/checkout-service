@@ -19,8 +19,7 @@ const getProductById = (req, res) => {
         res.send(err);
         throw err;
       }
-      res.send(results);
-      // res.status(200).json(results.rows);
+      res.status(200).json(results.rows);
     }
   );
 };
