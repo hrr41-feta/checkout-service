@@ -7,8 +7,10 @@ const morgan = require("morgan");
 const PORT = process.env.PORT;
 const app = express();
 const postgreSQL = require("../db/postgreSQL/index.js");
+const cors = require("cors");
 // const cassDB = require("../db/cassandra/index.js");
 
+app.use(cors());
 app.use(morgan("combined"));
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
