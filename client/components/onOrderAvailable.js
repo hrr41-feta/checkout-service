@@ -18,7 +18,7 @@ const OnOrderAvailable = ({ availableQuantity, onOrder }) => {
   const limitedQuantity = (
     <div className={styles.popularItem}>
       <img
-        src="https://moviepreview.s3.us-east-2.amazonaws.com/shoppingcard.png"
+        src="https://moviepreview.s3.us-east-2.amazonaws.com/hourglass.png"
         className={styles.alertImage}
       ></img>
       <span>
