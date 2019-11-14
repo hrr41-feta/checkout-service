@@ -16,8 +16,7 @@ const getProductById = (req, res) => {
     [id],
     (err, results) => {
       if (err) {
-        res.send("ur fucking up");
-        res.send(err);
+        res.send(err, "ur fucking up");
         throw err;
       }
       res.status(200).json(results.rows);
