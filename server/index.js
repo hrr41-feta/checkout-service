@@ -24,23 +24,23 @@ app.use((req, res, next) => {
 //res.setheader
 
 //PostgreSQL Routes
-app.get("/api/checkout/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  postgreSQL
-    .getProductById(id)
-    .then(product => res.json(product))
-    .catch(() => {
-      res.send("Error");
-    });
-});
-// app.get("/api/checkout/:id", postgreSQL.getProductById);
+// app.get("/api/checkout/:id", (req, res) => {
+//   const id = parseInt(req.params.id);
+//   postgreSQL
+//     .getProductById(id)
+//     .then(product => res.json(product))
+//     .catch(() => {
+//       res.send("Error");
+//     });
+// });
+app.get("/api/checkout/:id", postgreSQL.getProductById);
 app.post("/api/checkout/", postgreSQL.addProduct);
 app.put("/api/checkout/:id", postgreSQL.updateProductById);
 app.delete("/api/checkout/:id", postgreSQL.deleteProductById);
 
-// app.get("/loaderio-c3fed30e7f6337ddb87a1485bd6623c9/", (req, res) => {
-//   res.send();
-// });
+app.get("/test", (req, res) => {
+  res.send("yes");
+});
 
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
