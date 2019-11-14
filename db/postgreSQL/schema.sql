@@ -78,3 +78,7 @@ insert into font (fonts) values('serif'),('comic_sans'),('typewriter'),('cursive
 \COPY products_font (product_id,font_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_font.csv' DELIMITER ',' CSV HEADER;
 
 \COPY products_material (product_id,material_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_material.csv' DELIMITER ',' CSV HEADER;
+
+
+
+psql -h 18.217.143.34 -d checkout -U power_user -c "\COPY products_material (product_id,material_id) FROM '/Users/robnolan/HRR41/senior/checkout-service/products_material.csv' DELIMITER ',' CSV HEADER;"

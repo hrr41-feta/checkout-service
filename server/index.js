@@ -27,6 +27,10 @@ app.post("/api/checkout/", postgreSQL.addProduct);
 app.put("/api/checkout/:id", postgreSQL.updateProductById);
 app.delete("/api/checkout/:id", postgreSQL.deleteProductById);
 
+// app.get("/loaderio-c3fed30e7f6337ddb87a1485bd6623c9/", (req, res) => {
+//   res.send();
+// });
+
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
 });

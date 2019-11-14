@@ -1,11 +1,10 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
-import ProductOption from './productOption.js';
+import React from "react";
+import ProductOption from "./productOption.js";
 
 const ProductOptionList = ({ productOptions, updateChoice }) => (
   <div className="productOptions">
-
     {productOptions.map((option, idx) => (
       <ProductOption
         optionName={option.optionName}

@@ -187,7 +187,9 @@ class App extends React.Component {
   async requestProductDetails(productId) {
     let response;
     try {
-      response = await axios.get(`/api/checkout/${productId}/`);
+      response = await axios.get(
+        `http://ec2-52-15-159-32.us-east-2.compute.amazonaws.com:1234/api/checkout/${productId}/`
+      );
       console.log("LOOKHERE!!!!", response.data[0]);
       console.log(response.data[0].fonts);
       return response.data;
