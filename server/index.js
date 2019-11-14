@@ -38,10 +38,6 @@ app.post("/api/checkout/", postgreSQL.addProduct);
 app.put("/api/checkout/:id", postgreSQL.updateProductById);
 app.delete("/api/checkout/:id", postgreSQL.deleteProductById);
 
-app.get("/test", (req, res) => {
-  res.send("yes");
-});
-
 app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
 });
