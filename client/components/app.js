@@ -182,7 +182,7 @@ class App extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   // eslint-disable-next-line consistent-return
-  async requestProductDetails(productId) {
+  async requestProductDetails(params) {
     let id = window.location.search.slice(10) || params;
     try {
       let response = await axios.get(
