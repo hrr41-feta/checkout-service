@@ -5,13 +5,13 @@ import styles from './styles.css';
 const OnOrderAvailable = ({ availableQuantity, onOrder }) => {
   const popularItem = (
     <div className={styles.popularItem}>
-      <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" className={styles.alertImage} />
+      <img src="https://moviepreview.s3.us-east-2.amazonaws.com/shoppingcard.png" className={styles.alertImage} />
       <span><b>Other people want this.</b> {onOrder} people have this in their carts right now.</span>
     </div>
   );
   const limitedQuantity = (
     <div className={styles.popularItem}>
-      <img src="https://img.icons8.com/ios/50/000000/hourglass-sand-bottom.png" className={styles.alertImage}></img>
+      <img src="https://moviepreview.s3.us-east-2.amazonaws.com/shoppingcard.png" className={styles.alertImage}></img>
       <span><b>Almost Gone.</b> There's only {availableQuantity} left.</span>
     </div>
   );
@@ -26,3 +26,5 @@ const OnOrderAvailable = ({ availableQuantity, onOrder }) => {
 };
 
 export default OnOrderAvailable;
+
+https://moviepreview.s3.us-east-2.amazonaws.com/shoppingcard.png
