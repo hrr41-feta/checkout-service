@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 //       res.send("Error");
 //     });
 // });
-app.get("/api/checkout", postgreSQL.getProductById);
+app.get("/api/checkout/:id", postgreSQL.getProductById);
 app.post("/api/checkout/", postgreSQL.addProduct);
 app.put("/api/checkout/:id", postgreSQL.updateProductById);
 app.delete("/api/checkout/:id", postgreSQL.deleteProductById);
