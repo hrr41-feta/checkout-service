@@ -25,7 +25,13 @@ app.use((req, res, next) => {
 
 //PostgreSQL Routes
 app.get("/api/checkout/:id", (req, res) => {
-  res.send("sup");
+  const id = parseInt(req.params.id);
+  postgreSQL
+    .getProductById(id)
+    .then(product => res.json(product))
+    .catch(() => {
+      res.send("Error");
+    });
 });
 // app.get("/api/checkout/:id", postgreSQL.getProductById);
 app.post("/api/checkout/", postgreSQL.addProduct);
