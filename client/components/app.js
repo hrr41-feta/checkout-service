@@ -197,25 +197,39 @@ class App extends React.Component {
     }
   }
 
+  getSearchParameters() {
+    let prmstr = window.location.search.substr(1);
+    return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+  }
+
+  transformToAssocArray(prmstr) {
+    let params = {};
+    let prmarr = prmstr.split("&");
+    for (let i = 0; i < prmarr.length; i++) {
+      let tmparr = prmarr[i].split("=");
+      params[tmparr[0]] = tmparr[1];
+    }
+    return params;
+  }
+
   async postProduct() {
+    let params = this.getSearchParameters();
     try {
       let response = await axios.get(
         "http://ec2-52-15-159-32.us-east-2.compute.amazonaws.com:1234/api/checkout",
         {
           params: {
-            sellerName: sellerName,
-            averageReviewScore: averageReviewScore,
-            numberReviews: numberReviews,
-            badge: badge,
-            itemPrice: itemPrice,
-            freeShipping: freeShipping,
-            personalization: personalization,
-            availableQuantity: availableQuantity,
-            onOrder: onOrder,
-            productId: productId,
-            personalizationChoice: personalizationChoice,
-            quantityChoice: quantityChoice,
-            productChoices: productChoices
+            seller_name: params.seller_name,
+            average_review_score: params.average_review_score,
+            number_reviews: params.number_reviews,
+            item_name: params.item_name,
+            badge: params.badge,
+            item_price: params.item_price,
+            free_shipping: params.free_shipping,
+            personalization: params.personalization,
+            available_quantity: params.available_quantity,
+            on_order: params.on_order,
+            product_id: params.product_id
           }
         }
       );
