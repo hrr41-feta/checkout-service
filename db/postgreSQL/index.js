@@ -10,7 +10,7 @@ const pool = new Pool({
 
 //PostgreSQL Sample HTTP requests
 const getProductById = (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.query.id;
   pool.query(
     "SELECT products.*, size.sizes, material.materials, font.fonts, pattern.patterns FROM products INNER JOIN products_size ON products.id = products_size.product_id INNER JOIN size ON products_size.size_id = size.id INNER JOIN products_material ON products.id = products_material.product_id INNER JOIN material ON products_material.material_id = material.id INNER JOIN products_font ON products.id = products_font.product_id INNER JOIN font ON products_font.font_id = font.id INNER JOIN products_pattern ON products.id = products_pattern.product_id INNER JOIN pattern ON products_pattern.pattern_id = pattern.id WHERE products.id = $1",
     [id],
