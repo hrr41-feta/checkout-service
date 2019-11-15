@@ -1,4 +1,4 @@
-const pool = require("./index");
+const pool = require("./index").pool;
 
 //PostgreSQL Sample HTTP requests
 const getProductById = (req, res) => {
