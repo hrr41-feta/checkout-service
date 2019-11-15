@@ -205,13 +205,13 @@ class App extends React.Component {
   }
 
   transformToAssocArray(prmstr) {
-    let params = {};
+    let param = {};
     let prmarr = prmstr.split("&");
     for (let i = 0; i < prmarr.length; i++) {
       let tmparr = prmarr[i].split("=");
-      params[tmparr[0]] = tmparr[1];
+      param[tmparr[0]] = tmparr[1];
     }
-    return params;
+    return param;
   }
 
   async postProduct() {
@@ -221,19 +221,17 @@ class App extends React.Component {
       let response = await axios.post(
         "http://ec2-52-15-159-32.us-east-2.compute.amazonaws.com:1234/api/post",
         {
-          params: {
-            seller_name: params.seller_name,
-            average_review_score: JSON.parse(params.average_review_score),
-            number_reviews: JSON.parse(params.number_reviews),
-            item_name: params.item_name,
-            badge: JSON.parse(params.badge),
-            item_price: JSON.parse(params.item_price),
-            free_shipping: JSON.parse(arams.free_shipping),
-            personalization: JSON.parse(params.personalization),
-            available_quantity: JSON.parse(params.available_quantity),
-            on_order: JSON.parse(params.on_order),
-            product_id: JSON.parse(params.product_id)
-          }
+          seller_name: params.seller_name,
+          average_review_score: JSON.parse(params.average_review_score),
+          number_reviews: JSON.parse(params.number_reviews),
+          item_name: params.item_name,
+          badge: JSON.parse(params.badge),
+          item_price: JSON.parse(params.item_price),
+          free_shipping: JSON.parse(arams.free_shipping),
+          personalization: JSON.parse(params.personalization),
+          available_quantity: JSON.parse(params.available_quantity),
+          on_order: JSON.parse(params.on_order),
+          product_id: JSON.parse(params.product_id)
         }
       );
     } catch (err) {
