@@ -198,7 +198,6 @@ class App extends React.Component {
   }
 
   async postProduct() {
-    let sellerName =
     try {
       let response = await axios.get(
         "http://ec2-52-15-159-32.us-east-2.compute.amazonaws.com:1234/api/checkout",
