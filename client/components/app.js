@@ -215,7 +215,7 @@ class App extends React.Component {
   async postProduct() {
     let params = this.getSearchParameters();
     try {
-      let response = await axios.get(
+      let response = await axios.post(
         "http://ec2-52-15-159-32.us-east-2.compute.amazonaws.com:1234/api/post",
         {
           params: {
