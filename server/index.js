@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 //res.setheader
 
 app.get("/api/checkout/:id", pg.getProductById);
-app.post("/api/checkout", pg.addProduct);
+app.post("/api/post", pg.addProduct);
 app.put("/api/checkout/:id", pg.updateProductById);
 app.delete("/api/checkout/:id", pg.deleteProductById);
 app.get("/loaderio-c3fed30e7f6337ddb87a1485bd6623c9/", (req, res) => {
