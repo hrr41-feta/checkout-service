@@ -6,11 +6,9 @@ const morgan = require("morgan");
 // const productDetails = require("../db/mongoDB/index.js");
 const PORT = process.env.PORT;
 const app = express();
-const postgreSQL = require("../db/postgreSQL/index.js");
-// const cors = require("cors");
+const pg = require("../db/postgreSQL/controllers.js");
 // const cassDB = require("../db/cassandra/index.js");
 
-// app.use(cors());
 app.use(morgan("combined"));
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: false }));
@@ -23,20 +21,10 @@ app.use((req, res, next) => {
 });
 //res.setheader
 
-//PostgreSQL Routes
-// app.get("/api/checkout/:id", (req, res) => {
-//   const id = parseInt(req.params.id);
-//   postgreSQL
-//     .getProductById(id)
-//     .then(product => res.json(product))
-//     .catch(() => {
-//       res.send("Error");
-//     });
-// });
-app.get("/api/checkout/:id", postgreSQL.getProductById);
-app.post("/api/checkout/", postgreSQL.addProduct);
-app.put("/api/checkout/:id", postgreSQL.updateProductById);
-app.delete("/api/checkout/:id", postgreSQL.deleteProductById);
+app.get("/api/checkout/:id", pg.getProductById);
+app.post("/api/checkout", pg.addProduct);
+app.put("/api/checkout/:id", pg.updateProductById);
+app.delete("/api/checkout/:id", pg.deleteProductById);
 app.get("/loaderio-c3fed30e7f6337ddb87a1485bd6623c9/", (req, res) => {
   res.send("loaderio-c3fed30e7f6337ddb87a1485bd6623c9");
 });
