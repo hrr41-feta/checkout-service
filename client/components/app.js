@@ -42,6 +42,8 @@ class App extends React.Component {
     this.updateQuantityChoice = this.updateQuantityChoice.bind(this);
     this.updateProductChoice = this.updateProductChoice.bind(this);
     this.productOptionsStateMaker = this.productOptionsStateMaker.bind(this);
+    this.getSearchParameters = this.getSearchParameters.bind(this);
+    this.transformToAssocArray = this.transformToAssocArray.bind(this);
   }
 
   componentDidMount() {
@@ -221,16 +223,16 @@ class App extends React.Component {
         {
           params: {
             seller_name: params.seller_name,
-            average_review_score: params.average_review_score,
-            number_reviews: params.number_reviews,
+            average_review_score: JSON.parse(params.average_review_score),
+            number_reviews: JSON.parse(params.number_reviews),
             item_name: params.item_name,
-            badge: params.badge,
-            item_price: params.item_price,
-            free_shipping: params.free_shipping,
-            personalization: params.personalization,
-            available_quantity: params.available_quantity,
-            on_order: params.on_order,
-            product_id: params.product_id
+            badge: JSON.parse(params.badge),
+            item_price: JSON.parse(params.item_price),
+            free_shipping: JSON.parse(arams.free_shipping),
+            personalization: JSON.parse(params.personalization),
+            available_quantity: JSON.parse(params.available_quantity),
+            on_order: JSON.parse(params.on_order),
+            product_id: JSON.parse(params.product_id)
           }
         }
       );
